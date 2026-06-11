@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Poultry Trading India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Telugu:wght@400;700&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Gurmukhi:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#1B3A6B;--orange:#F47B20;--bg:#f5f6fa;--card:#ffffff;
+  --secondary:#eef0f7;--text:#1a1f36;--text2:#5a6480;
+  --border:rgba(27,58,107,0.12);--green:#25D366;
+  --radius:12px;--shadow:0 2px 12px rgba(27,58,107,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+h1,h2,h3,h4{font-family:'Baloo 2',cursive;font-weight:800;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;}
+
+/* Lang fonts */
+body.lang-hi,body.lang-mr{font-family:'Noto Sans Devanagari',sans-serif;}
+body.lang-bn{font-family:'Noto Sans Bengali',sans-serif;}
+body.lang-te{font-family:'Noto Sans Telugu',sans-serif;}
+body.lang-ml{font-family:'Noto Sans Malayalam',sans-serif;}
+body.lang-ta{font-family:'Noto Sans Tamil',sans-serif;}
+body.lang-pa{font-family:'Noto Sans Gurmukhi',sans-serif;}
+body.lang-kn{font-family:'Noto Sans Kannada',sans-serif;}
+body.lang-gu{font-family:'Noto Sans Gujarati',sans-serif;}
+body.lang-ur{font-family:'Noto Nastaliq Urdu',sans-serif;}
+body.lang-ar{font-family:'Noto Naskh Arabic',sans-serif;}
+
+/* RTL */
+body.rtl{direction:rtl;}
+body.rtl .nav-inner{flex-direction:row-reverse;}
+body.rtl .back-btn{flex-direction:row-reverse;}
+body.rtl .price-ribbon{left:-28px;right:auto;transform:rotate(45deg);}
+body.rtl .wa-fixed{right:auto;left:20px;}
+body.rtl .hero-btns{flex-direction:row-reverse;}
+body.rtl .feature-grid{direction:rtl;}
+body.rtl .dir-toolbar{flex-direction:row-reverse;}
+
+/* NAV */
+.nav{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:12px;height:60px;}
+.nav-logo{display:flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0;}
+.nav-logo span{color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1rem;}
+.nav-links{display:flex;gap:4px;flex:1;overflow-x:auto;scrollbar-width:none;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-link{color:rgba(255,255,255,0.75);padding:6px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;font-size:0.85rem;transition:all .2s;}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,0.15);}
+.lang-btn{background:rgba(255,255,255,0.12);color:#fff;border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:0.8rem;white-space:nowrap;position:relative;}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);min-width:220px;z-index:200;padding:6px;}
+.lang-dropdown.open{display:grid;grid-template-columns:1fr 1fr;}
+.lang-opt{padding:8px 12px;border-radius:6px;cursor:pointer;font-size:0.85rem;color:var(--text);}
+.lang-opt:hover{background:var(--secondary);}
+.lang-opt.sel{background:var(--navy);color:#fff;}
+.lang-wrap{position:relative;}
+
+/* PAGE */
+.page{display:none;}
+.page.active{display:block;}
+.container{max-width:1100px;margin:0 auto;padding:0 16px;}
+
+/* BACK BUTTON */
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--navy);cursor:pointer;margin:20px 0 0;font-weight:600;font-size:0.9rem;}
+.back-btn svg{width:18px;height:18px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#2a5298 100%);color:#fff;padding:60px 16px;text-align:center;}
+.hero h1{font-size:clamp(1.8rem,5vw,3rem);margin-bottom:12px;}
+.hero p{font-size:clamp(1rem,2.5vw,1.2rem);opacity:0.85;max-width:600px;margin:0 auto 28px;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:8px;font-weight:700;font-size:0.95rem;cursor:pointer;border:none;transition:all .2s;}
+.btn-primary{background:var(--orange);color:#fff;}
+.btn-primary:hover{background:#d96a10;}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.6);}
+.btn-outline:hover{background:rgba(255,255,255,0.1);}
+.btn-green{background:var(--green);color:#fff;}
+.btn-green:hover{background:#1da851;}
+.btn-navy{background:var(--navy);color:#fff;}
+.btn-navy:hover{background:#142d56;}
+
+/* SECTION */
+.section{padding:48px 0;}
+.section-title{text-align:center;margin-bottom:32px;}
+.section-title h2{font-size:clamp(1.4rem,3vw,2rem);color:var(--navy);margin-bottom:8px;}
+.section-title p{color:var(--text2);max-width:580px;margin:0 auto;}
+
+/* PRODUCT CARDS (HOME) */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.product-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;border:1px solid var(--border);}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(27,58,107,0.15);}
+.product-card-top{padding:28px 24px 20px;display:flex;flex-direction:column;align-items:flex-start;gap:12px;}
+.product-badge{padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;text-transform:uppercase;}
+.badge-live{background:#dcf5e8;color:#0a6630;}
+.badge-ready{background:#fff3e0;color:#b85c00;}
+.badge-soon{background:#f0f0f0;color:#666;}
+.product-card h3{font-size:1.2rem;color:var(--navy);}
+.product-card p{font-size:0.9rem;color:var(--text2);}
+.product-card-bottom{padding:16px 24px;background:var(--secondary);display:flex;justify-content:space-between;align-items:center;}
+.product-card-bottom span{font-size:0.85rem;color:var(--navy);font-weight:600;}
+.arrow-icon{color:var(--orange);}
+
+/* WHY CHOOSE */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+.why-card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border);}
+.why-icon{font-size:2rem;margin-bottom:12px;}
+.why-card h4{color:var(--navy);margin-bottom:6px;}
+.why-card p{font-size:0.88rem;color:var(--text2);}
+
+/* FEATURE CARDS */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.feature-card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border);}
+.feature-card .fi{font-size:2rem;margin-bottom:10px;}
+.feature-card h4{color:var(--navy);margin-bottom:6px;font-size:1rem;}
+.feature-card p{font-size:0.86rem;color:var(--text2);}
+
+/* SCREENSHOTS */
+.screenshot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+.screenshot-ph{background:var(--secondary);border-radius:var(--radius);aspect-ratio:9/16;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed var(--border);}
+.screenshot-ph span{font-size:0.8rem;color:var(--text2);text-align:center;padding:0 12px;}
+
+/* VIDEO COMING SOON */
+.video-soon{background:var(--card);border-radius:var(--radius);padding:48px 24px;text-align:center;box-shadow:var(--shadow);border:1px solid var(--border);}
+.video-soon .vs-icon{font-size:3.5rem;margin-bottom:12px;}
+.video-soon h3{color:var(--navy);margin-bottom:8px;}
+.video-soon p{color:var(--text2);font-size:0.9rem;}
+
+/* INSTALL STEPS */
+.steps-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;counter-reset:steps;}
+.step-item{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid var(--border);counter-increment:steps;position:relative;padding-top:48px;}
+.step-item::before{content:counter(steps);position:absolute;top:16px;left:20px;width:28px;height:28px;background:var(--navy);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;}
+.step-item h4{color:var(--navy);margin-bottom:6px;font-size:0.95rem;}
+.step-item p{font-size:0.84rem;color:var(--text2);}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
+.price-card{background:var(--card);border-radius:var(--radius);padding:28px 20px;box-shadow:var(--shadow);border:1px solid var(--border);position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.price-card.popular{border-color:var(--orange);}
+.price-ribbon{position:absolute;top:16px;right:-28px;background:var(--orange);color:#fff;font-size:0.68rem;font-weight:700;padding:4px 36px;transform:rotate(45deg);white-space:nowrap;}
+.price-name{font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--text2);margin-bottom:6px;}
+.price-amount{font-family:'Baloo 2',cursive;font-size:2rem;font-weight:800;color:var(--navy);}
+.price-period{font-size:0.8rem;color:var(--text2);}
+.price-desc{font-size:0.84rem;color:var(--text2);margin:10px 0 16px;}
+.price-features{list-style:none;margin-bottom:20px;flex:1;}
+.price-features li{font-size:0.84rem;color:var(--text);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:6px;align-items:flex-start;}
+.price-features li::before{content:"✓";color:var(--orange);font-weight:700;flex-shrink:0;}
+.price-cta{margin-top:auto;}
+
+/* FAQ */
+.faq-list{max-width:720px;margin:0 auto;}
+.faq-item{background:var(--card);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;}
+.faq-q{padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);}
+.faq-q .faq-arrow{transition:transform .3s;font-size:1.1rem;color:var(--text2);}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{display:none;padding:0 20px 16px;font-size:0.88rem;color:var(--text2);}
+.faq-item.open .faq-a{display:block;}
+
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--navy),#2a5298);color:#fff;padding:48px 16px;text-align:center;border-radius:var(--radius);}
+.cta-band h2{margin-bottom:10px;}
+.cta-band p{opacity:0.85;margin-bottom:24px;}
+
+/* NOTIFY FORM */
+.notify-form{display:flex;gap:10px;max-width:420px;margin:24px auto 0;flex-wrap:wrap;justify-content:center;}
+.notify-form input{flex:1;min-width:200px;padding:10px 16px;border-radius:8px;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:#fff;font-size:0.9rem;}
+.notify-form input::placeholder{color:rgba(255,255,255,0.6);}
+.notify-form input:focus{outline:none;border-color:rgba(255,255,255,0.7);}
+
+/* COMING SOON PAGE */
+.coming-soon-wrap{max-width:600px;margin:60px auto;text-align:center;padding:0 16px;}
+.coming-soon-wrap .cs-badge{display:inline-block;background:#f0f0f0;color:#666;padding:6px 20px;border-radius:20px;font-size:0.85rem;font-weight:700;margin-bottom:20px;}
+.coming-soon-wrap h1{color:var(--navy);margin-bottom:12px;}
+.coming-soon-wrap p{color:var(--text2);margin-bottom:28px;}
+
+/* DIRECTORY */
+.dir-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.dir-search{flex:1;min-width:200px;padding:10px 14px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-size:0.9rem;color:var(--text);}
+.dir-search:focus{outline:none;border-color:var(--navy);}
+.dir-sort{padding:10px 12px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-size:0.85rem;color:var(--text);cursor:pointer;}
+.dir-view-btn{padding:8px 12px;border-radius:8px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:1rem;}
+.dir-view-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.filter-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.pill{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:0.82rem;font-weight:600;transition:all .2s;}
+.pill.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.pill.farmer-pill.active{background:#639922;}
+.pill.trader-pill.active{background:#BA7517;}
+.pill.retailer-pill.active{background:#1B3A6B;}
+.pill.supplier-pill.active{background:#7F77DD;}
+
+/* DIR LISTING GRID */
+.dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.dir-grid.list-view{grid-template-columns:1fr;}
+
+.dir-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);display:flex;flex-direction:column;}
+.dir-grid.list-view .dir-card{flex-direction:row;align-items:stretch;}
+.dir-card-stripe{width:5px;background:#ccc;flex-shrink:0;}
+.dir-grid.list-view .dir-card-stripe{width:6px;}
+.dir-card-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;flex-shrink:0;}
+.dir-card-header{padding:16px;display:flex;gap:12px;align-items:center;border-bottom:1px solid var(--border);}
+.dir-grid.list-view .dir-card-header{border-bottom:none;border-right:1px solid var(--border);flex:0 0 260px;}
+.dir-card-info{flex:1;}
+.dir-card-info h4{color:var(--navy);font-size:0.95rem;margin-bottom:2px;}
+.dir-card-info .city{font-size:0.8rem;color:var(--text2);}
+.dir-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:700;margin-top:4px;}
+.dir-card-body{padding:12px 16px;font-size:0.83rem;color:var(--text2);flex:1;}
+.dir-card-footer{padding:10px 16px;display:flex;gap:8px;border-top:1px solid var(--border);}
+.dir-grid.list-view .dir-card-footer{flex-direction:column;justify-content:center;border-top:none;border-left:1px solid var(--border);}
+.dir-wa-btn{display:inline-flex;align-items:center;gap:5px;background:var(--green);color:#fff;padding:6px 12px;border-radius:6px;font-size:0.8rem;font-weight:700;cursor:pointer;}
+.dir-fav-btn{background:transparent;border:1.5px solid var(--border);padding:6px 10px;border-radius:6px;cursor:pointer;font-size:0.9rem;}
+.dir-fav-btn.faved{border-color:var(--orange);}
+.dir-empty{text-align:center;padding:48px;color:var(--text2);}
+
+/* WA FIXED */
+.wa-fixed{position:fixed;bottom:24px;right:20px;z-index:200;background:var(--green);color:#fff;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);cursor:pointer;font-size:1.5rem;text-decoration:none;}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,0.75);text-align:center;padding:24px 16px;font-size:0.85rem;margin-top:48px;}
+footer a{color:rgba(255,255,255,0.75);}
+
+/* PRODUCT HERO LOGO */
+.product-hero{background:linear-gradient(135deg,var(--navy),#2a5298);padding:40px 16px;text-align:center;color:#fff;}
+.product-hero .ph-logo{width:80px;height:80px;border-radius:16px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.15);}
+.product-hero h1{font-size:clamp(1.5rem,4vw,2.4rem);margin-bottom:8px;}
+.product-hero p{opacity:0.85;max-width:560px;margin:0 auto 24px;font-size:0.95rem;}
+
+@media(max-width:600px){
+  .nav-links{gap:2px;}
+  .nav-link{font-size:0.78rem;padding:5px 8px;}
+  .hero{padding:40px 16px;}
+  .section{padding:32px 0;}
+  .pricing-grid{grid-template-columns:1fr 1fr;}
+  .steps-list{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:500px){
+  .pricing-grid{grid-template-columns:1fr;}
+  .steps-list{grid-template-columns:1fr;}
+  .dir-grid{grid-template-columns:1fr;}
+}
+@media(min-width:900px){
+  .screenshot-grid{grid-template-columns:repeat(4,1fr);}
+}
+</style>
+</head>
+<body class="lang-en">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#F47B20"/><text x="16" y="22" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="18" fill="white">P</text></svg>
+      <span>Poultry Trading</span>
+    </div>
+    <div class="nav-links">
+      <span class="nav-link active" id="nl-home" onclick="showPage('home')" data-i18n="nav_home">Home</span>
+      <span class="nav-link" id="nl-trader" onclick="showPage('trader')" data-i18n="nav_trader">Trader Flow</span>
+      <span class="nav-link" id="nl-retailer" onclick="showPage('retailer')" data-i18n="nav_retailer">Retailer Flow</span>
+      <span class="nav-link" id="nl-farmer" onclick="showPage('farmer')" data-i18n="nav_farmer">Farmer Flow</span>
+      <span class="nav-link" id="nl-dir" onclick="showPage('dir')" data-i18n="nav_dir">Directory</span>
+    </div>
+    <div class="lang-wrap">
+      <button class="lang-btn" onclick="toggleLangMenu()">🌐 <span id="cur-lang">EN</span> ▾</button>
+      <div class="lang-dropdown" id="lang-menu">
+        <div class="lang-opt sel" onclick="setLang('en')">English</div>
+        <div class="lang-opt" onclick="setLang('hi')">हिन्दी</div>
+        <div class="lang-opt" onclick="setLang('bn')">বাংলা</div>
+        <div class="lang-opt" onclick="setLang('te')">తెలుగు</div>
+        <div class="lang-opt" onclick="setLang('mr')">मराठी</div>
+        <div class="lang-opt" onclick="setLang('ta')">தமிழ்</div>
+        <div class="lang-opt" onclick="setLang('gu')">ગુજરાતી</div>
+        <div class="lang-opt" onclick="setLang('kn')">ಕನ್ನಡ</div>
+        <div class="lang-opt" onclick="setLang('ml')">മലയാളം</div>
+        <div class="lang-opt" onclick="setLang('pa')">ਪੰਜਾਬੀ</div>
+        <div class="lang-opt" onclick="setLang('ur')">اردو</div>
+        <div class="lang-opt" onclick="setLang('ar')">العربية</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="container">
+      <h1 data-i18n="home_hero_h1">India's Complete Poultry Trading Platform</h1>
+      <p data-i18n="home_hero_p">Connect farmers, traders, and retailers with smart software built for India's poultry industry.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="showPage('trader')" data-i18n="home_cta_trader">Explore Trader Flow</button>
+        <button class="btn btn-outline" onclick="showPage('dir')" data-i18n="home_cta_dir">Browse Directory</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="home_products_h2">Our Software Products</h2>
+        <p data-i18n="home_products_p">Three powerful apps for every player in the poultry supply chain.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showPage('trader')">
+          <div class="product-card-top">
+            <span class="product-badge badge-live" data-i18n="badge_live">LIVE</span>
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect width="56" height="56" rx="12" fill="#1B3A6B"/><text x="28" y="38" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="28" fill="white">T</text></svg>
+            <h3 data-i18n="prod_trader_name">Poultry Trader Flow</h3>
+            <p data-i18n="prod_trader_desc">End-to-end trading management for poultry wholesalers. Buy, sell, track, and analyse — all in one app.</p>
+          </div>
+          <div class="product-card-bottom">
+            <span data-i18n="home_explore">Explore →</span>
+            <span class="arrow-icon">›</span>
+          </div>
+        </div>
+        <div class="product-card" onclick="showPage('retailer')">
+          <div class="product-card-top">
+            <span class="product-badge badge-ready" data-i18n="badge_ready">LAUNCH READY</span>
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect width="56" height="56" rx="12" fill="#F47B20"/><text x="28" y="38" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="28" fill="white">R</text></svg>
+            <h3 data-i18n="prod_retailer_name">Poultry Retailer Flow</h3>
+            <p data-i18n="prod_retailer_desc">Smart retail management for poultry shops. Manage inventory, sales, customers, and daily reports.</p>
+          </div>
+          <div class="product-card-bottom">
+            <span data-i18n="home_explore">Explore →</span>
+            <span class="arrow-icon">›</span>
+          </div>
+        </div>
+        <div class="product-card" onclick="showPage('farmer')">
+          <div class="product-card-top">
+            <span class="product-badge badge-soon" data-i18n="badge_soon">COMING SOON</span>
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect width="56" height="56" rx="12" fill="#639922"/><text x="28" y="38" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="28" fill="white">F</text></svg>
+            <h3 data-i18n="prod_farmer_name">Poultry Farmer Flow</h3>
+            <p data-i18n="prod_farmer_desc">Farm management tool for poultry farmers. Track flocks, feed, health, mortality, and profitability.</p>
+          </div>
+          <div class="product-card-bottom">
+            <span data-i18n="home_explore">Explore →</span>
+            <span class="arrow-icon">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--secondary);">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="why_h2">Why Choose Poultry Trading India?</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-icon">📱</div><h4 data-i18n="why1_h">Works Offline</h4><p data-i18n="why1_p">All apps work without internet. Sync when connected. Built for rural India.</p></div>
+        <div class="why-card"><div class="why-icon">🇮🇳</div><h4 data-i18n="why2_h">12 Indian Languages</h4><p data-i18n="why2_p">Full UI in Hindi, Bengali, Telugu, Marathi, Tamil, Gujarati, and more.</p></div>
+        <div class="why-card"><div class="why-icon">🔒</div><h4 data-i18n="why3_h">Your Data, Your Device</h4><p data-i18n="why3_p">Data stored locally on your device. Privacy by design, no data leaks.</p></div>
+        <div class="why-card"><div class="why-icon">💰</div><h4 data-i18n="why4_h">Affordable Pricing</h4><p data-i18n="why4_p">Plans starting free. Upgrade only when your business grows.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="cta-band">
+        <h2 data-i18n="home_footer_cta_h">Ready to grow your poultry business?</h2>
+        <p data-i18n="home_footer_cta_p">Join thousands of poultry professionals across India using our apps.</p>
+        <a href="https://wa.me/919867861253" target="_blank" class="btn btn-green">💬 <span data-i18n="wa_chat">Chat on WhatsApp</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Poultry Trading India · <a href="https://wa.me/919867861253" target="_blank">WhatsApp</a> · poultrytrading.com</p>
+    <p style="margin-top:6px;" data-i18n="footer_tagline">Empowering India's Poultry Industry</p>
+  </footer>
+</div>
+
+<!-- TRADER FLOW PAGE -->
+<div class="page" id="page-trader">
+  <div class="product-hero">
+    <div class="container">
+      <div class="back-btn" onclick="showPage('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-i18n="back">Back</span>
+      </div>
+      <div class="ph-logo">
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><text x="26" y="36" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="30" fill="white">T</text></svg>
+      </div>
+      <span class="product-badge badge-live" style="margin-bottom:10px;display:inline-block;" data-i18n="badge_live">LIVE</span>
+      <h1 data-i18n="prod_trader_name">Poultry Trader Flow</h1>
+      <p data-i18n="trader_hero_p">The complete trading management app for poultry wholesalers. Buy from farmers, sell to retailers, manage credit, track ledger — all offline.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/919867861253?text=Hi%2C+I+want+to+download+Poultry+Trader+Flow" target="_blank" class="btn btn-green">💬 <span data-i18n="wa_download">Get on WhatsApp</span></a>
+        <button class="btn btn-outline" onclick="document.getElementById('trader-pricing').scrollIntoView({behavior:'smooth'})" data-i18n="view_pricing">View Pricing</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="features_h2">Key Features</h2></div>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="fi">📋</div><h4 data-i18n="tf1_h">Purchase Management</h4><p data-i18n="tf1_p">Record buys from farmers with weight, rate, vehicle, and party details. Auto-calculate totals.</p></div>
+        <div class="feature-card"><div class="fi">🛒</div><h4 data-i18n="tf2_h">Sales Management</h4><p data-i18n="tf2_p">Bill retailers instantly. Track partial payments, outstanding dues, and payment history.</p></div>
+        <div class="feature-card"><div class="fi">📒</div><h4 data-i18n="tf3_h">Ledger & Accounts</h4><p data-i18n="tf3_p">Full party ledger. Cash book, daily P&L, and balance sheet ready at a tap.</p></div>
+        <div class="feature-card"><div class="fi">📦</div><h4 data-i18n="tf4_h">Stock Tracking</h4><p data-i18n="tf4_p">Live inventory of live birds, dressed chicken, and eggs. Automatic stock adjustments.</p></div>
+        <div class="feature-card"><div class="fi">📊</div><h4 data-i18n="tf5_h">Reports & Analytics</h4><p data-i18n="tf5_p">Daily, weekly, monthly reports. Profit trends, top customers, best-selling SKUs.</p></div>
+        <div class="feature-card"><div class="fi">📶</div><h4 data-i18n="tf6_h">Works Offline</h4><p data-i18n="tf6_p">100% offline. No internet needed. Auto-sync when online via cloud backup.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--secondary);">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="screenshots_h2">App Screenshots</h2><p data-i18n="screenshots_p">A glimpse of the clean, intuitive interface.</p></div>
+      <div class="screenshot-grid">
+        <div class="screenshot-ph"><span style="font-size:2rem">📋</span><span data-i18n="sc1">Dashboard</span></div>
+        <div class="screenshot-ph"><span style="font-size:2rem">🛒</span><span data-i18n="sc2">New Sale</span></div>
+        <div class="screenshot-ph"><span style="font-size:2rem">📒</span><span data-i18n="sc3">Ledger View</span></div>
+        <div class="screenshot-ph"><span style="font-size:2rem">📊</span><span data-i18n="sc4">Reports</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="video_h2">Watch Demo</h2></div>
+      <div class="video-soon">
+        <div class="vs-icon">🎬</div>
+        <h3 data-i18n="video_soon_h">Demo Videos Coming Soon</h3>
+        <p data-i18n="video_soon_p">We are recording in-depth walkthroughs of every feature. Check back shortly or chat with us on WhatsApp for a live demo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--secondary);">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="install_h2">How to Install</h2></div>
+      <div class="steps-list">
+        <div class="step-item"><h4 data-i18n="step1_h">Contact Us</h4><p data-i18n="step1_p">Message us on WhatsApp with your business name and phone number.</p></div>
+        <div class="step-item"><h4 data-i18n="step2_h">Receive APK</h4><p data-i18n="step2_p">We send the APK file directly to your WhatsApp. No Play Store needed.</p></div>
+        <div class="step-item"><h4 data-i18n="step3_h">Install App</h4><p data-i18n="step3_p">Enable "Install from unknown sources" and tap the APK to install in seconds.</p></div>
+        <div class="step-item"><h4 data-i18n="step4_h">Start Trading</h4><p data-i18n="step4_p">Set up your business profile and start adding parties. We help with onboarding.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="trader-pricing">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="pricing_h2">Choose Your Plan</h2><p data-i18n="pricing_p">Simple pricing. No hidden fees. Cancel anytime.</p></div>
+      <div id="trader-price-cards"></div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--secondary);">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="faq_h2">Frequently Asked Questions</h2></div>
+      <div class="faq-list" id="trader-faq"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="cta-band">
+        <h2 data-i18n="trader_cta_h">Ready to manage your trading business smarter?</h2>
+        <p data-i18n="trader_cta_p">Download Poultry Trader Flow today. Setup takes less than 10 minutes.</p>
+        <a href="https://wa.me/919867861253?text=Hi%2C+I+want+to+try+Poultry+Trader+Flow" target="_blank" class="btn btn-green">💬 <span data-i18n="wa_download">Get on WhatsApp</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Poultry Trading India · <a href="https://wa.me/919867861253" target="_blank">WhatsApp</a> · poultrytrading.com</p>
+    <p style="margin-top:6px;" data-i18n="footer_tagline">Empowering India's Poultry Industry</p>
+  </footer>
+</div>
+
+<!-- RETAILER FLOW PAGE -->
+<div class="page" id="page-retailer">
+  <div class="product-hero">
+    <div class="container">
+      <div class="back-btn" onclick="showPage('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-i18n="back">Back</span>
+      </div>
+      <div class="ph-logo">
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><text x="26" y="36" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="30" fill="white">R</text></svg>
+      </div>
+      <span class="product-badge badge-ready" style="margin-bottom:10px;display:inline-block;" data-i18n="badge_ready">LAUNCH READY</span>
+      <h1 data-i18n="prod_retailer_name">Poultry Retailer Flow</h1>
+      <p data-i18n="retailer_hero_p">Smart retail management for poultry shops. Handle billing, inventory, customers, and daily reports effortlessly.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/919867861253?text=Hi%2C+I+want+to+know+about+Poultry+Retailer+Flow" target="_blank" class="btn btn-green">💬 <span data-i18n="wa_notify">Notify Me at Launch</span></a>
+        <button class="btn btn-outline" onclick="document.getElementById('retailer-pricing').scrollIntoView({behavior:'smooth'})" data-i18n="view_pricing">View Pricing</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="features_h2">Key Features</h2></div>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="fi">🧾</div><h4 data-i18n="rf1_h">Quick Billing</h4><p data-i18n="rf1_p">Generate bills in seconds. Print or share via WhatsApp. Customer receipt with shop branding.</p></div>
+        <div class="feature-card"><div class="fi">📦</div><h4 data-i18n="rf2_h">Inventory Control</h4><p data-i18n="rf2_p">Track live birds, dressed chicken, cuts, and eggs. Low-stock alerts to never run out.</p></div>
+        <div class="feature-card"><div class="fi">👥</div><h4 data-i18n="rf3_h">Customer Accounts</h4><p data-i18n="rf3_p">Maintain customer credit accounts. Track outstanding dues and payment history.</p></div>
+        <div class="feature-card"><div class="fi">📈</div><h4 data-i18n="rf4_h">Daily Reports</h4><p data-i18n="rf4_p">End-of-day summary: sales, expenses, cash, and profit. All in one tap.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--secondary);">
+    <div class="container">
+      <div class="cta-band" style="background:linear-gradient(135deg,#F47B20,#e06010);">
+        <h2 data-i18n="retailer_notify_h">Launching Soon — Be First in Line</h2>
+        <p data-i18n="retailer_notify_p">Poultry Retailer Flow is finalized and ready for launch. Register your interest to get early access and a special launch discount.</p>
+        <a href="https://wa.me/919867861253?text=Hi%2C+please+notify+me+when+Poultry+Retailer+Flow+launches" target="_blank" class="btn btn-green">💬 <span data-i18n="wa_notify">Notify Me at Launch</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="retailer-pricing">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="pricing_h2">Choose Your Plan</h2><p data-i18n="pricing_p">Simple pricing. No hidden fees. Cancel anytime.</p></div>
+      <div id="retailer-price-cards"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="cta-band">
+        <h2 data-i18n="retailer_cta_h">Transform your poultry shop today.</h2>
+        <p data-i18n="retailer_cta_p">Be among the first retailers to get access. Contact us now.</p>
+        <a href="https://wa.me/919867861253?text=Hi%2C+I+want+to+try+Poultry+Retailer+Flow" target="_blank" class="btn btn-green">💬 <span data-i18n="wa_chat">Chat on WhatsApp</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Poultry Trading India · <a href="https://wa.me/919867861253" target="_blank">WhatsApp</a> · poultrytrading.com</p>
+    <p style="margin-top:6px;" data-i18n="footer_tagline">Empowering India's Poultry Industry</p>
+  </footer>
+</div>
+
+<!-- FARMER FLOW PAGE -->
+<div class="page" id="page-farmer">
+  <div class="product-hero">
+    <div class="container">
+      <div class="back-btn" onclick="showPage('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-i18n="back">Back</span>
+      </div>
+      <div class="ph-logo">
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><text x="26" y="36" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="30" fill="white">F</text></svg>
+      </div>
+      <span class="product-badge badge-soon" style="margin-bottom:10px;display:inline-block;background:rgba(255,255,255,0.2);color:#fff;" data-i18n="badge_soon">COMING SOON</span>
+      <h1 data-i18n="prod_farmer_name">Poultry Farmer Flow</h1>
+      <p data-i18n="farmer_hero_p">The ultimate farm management app for poultry farmers. Track every flock, every feed batch, every sale — with insights that grow your profits.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="coming-soon-wrap">
+        <div style="font-size:4rem;margin-bottom:16px;">🐓</div>
+        <h1 data-i18n="farmer_cs_h">Under Development</h1>
+        <p data-i18n="farmer_cs_p">Poultry Farmer Flow is currently being built with inputs from poultry farmers across India. We are designing it to be the most practical farm management tool in the market.</p>
+        <p style="margin-bottom:28px;" data-i18n="farmer_cs_p2">Register your interest and help us shape the product by sharing what features matter most to you.</p>
+        <a href="https://wa.me/919867861253?text=Hi%2C+I+am+a+poultry+farmer+and+interested+in+Farmer+Flow" target="_blank" class="btn btn-navy">💬 <span data-i18n="farmer_cs_cta">Register My Interest</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--secondary);" id="farmer-pricing">
+    <div class="container">
+      <div class="section-title"><h2 data-i18n="pricing_planned_h2">Planned Pricing</h2><p data-i18n="pricing_planned_p">Indicative pricing for Farmer Flow — subject to change before launch.</p></div>
+      <div id="farmer-price-cards"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="cta-band" style="background:linear-gradient(135deg,#639922,#4a7318);">
+        <h2 data-i18n="farmer_cta_h">Help us build the perfect farm app.</h2>
+        <p data-i18n="farmer_cta_p">Your feedback shapes what we build. Talk to us today.</p>
+        <a href="https://wa.me/919867861253?text=Hi%2C+I+want+to+give+feedback+on+Farmer+Flow" target="_blank" class="btn btn-green">💬 <span data-i18n="wa_chat">Chat on WhatsApp</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Poultry Trading India · <a href="https://wa.me/919867861253" target="_blank">WhatsApp</a> · poultrytrading.com</p>
+    <p style="margin-top:6px;" data-i18n="footer_tagline">Empowering India's Poultry Industry</p>
+  </footer>
+</div>
+
+<!-- DIRECTORY PAGE -->
+<div class="page" id="page-dir">
+  <div class="hero" style="padding:32px 16px;">
+    <div class="container">
+      <h1 data-i18n="dir_hero_h">Industry Directory</h1>
+      <p data-i18n="dir_hero_p">Find verified farmers, traders, retailers, and suppliers across India.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="dir-toolbar">
+        <input type="text" class="dir-search" id="dir-search" placeholder="Search by name, city, product…" oninput="dirRender()" data-i18n-placeholder="dir_search_ph"/>
+        <select class="dir-sort" id="dir-sort" onchange="dirRender()">
+          <option value="name" data-i18n="sort_name">Name A–Z</option>
+          <option value="city" data-i18n="sort_city">City</option>
+          <option value="fav" data-i18n="sort_fav">Favourites First</option>
+        </select>
+        <button class="dir-view-btn active" id="btn-grid" onclick="setView('grid')" title="Grid">▦</button>
+        <button class="dir-view-btn" id="btn-list" onclick="setView('list')" title="List">☰</button>
+      </div>
+      <div class="filter-pills">
+        <span class="pill active" onclick="setFilter('all')" id="pill-all" data-i18n="filter_all">All</span>
+        <span class="pill farmer-pill" onclick="setFilter('Farmer')" id="pill-farmer" data-i18n="filter_farmer">Farmers</span>
+        <span class="pill trader-pill" onclick="setFilter('Trader')" id="pill-trader" data-i18n="filter_trader">Traders</span>
+        <span class="pill retailer-pill" onclick="setFilter('Retailer')" id="pill-retailer" data-i18n="filter_retailer">Retailers</span>
+        <span class="pill supplier-pill" onclick="setFilter('Supplier')" id="pill-supplier" data-i18n="filter_supplier">Suppliers</span>
+      </div>
+      <div id="dir-container" class="dir-grid"></div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--secondary);">
+    <div class="container">
+      <div class="cta-band">
+        <h2 data-i18n="dir_list_h">List Your Business</h2>
+        <p data-i18n="dir_list_p">Get discovered by buyers and sellers across India. Add your listing to the directory for free.</p>
+        <a href="https://wa.me/919867861253?text=Hi%2C+I+want+to+list+my+business+in+the+directory" target="_blank" class="btn btn-green">💬 <span data-i18n="dir_list_cta">Add Free Listing</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Poultry Trading India · <a href="https://wa.me/919867861253" target="_blank">WhatsApp</a> · poultrytrading.com</p>
+    <p style="margin-top:6px;" data-i18n="footer_tagline">Empowering India's Poultry Industry</p>
+  </footer>
+</div>
+
+<!-- FIXED WA BUTTON -->
+<a href="https://wa.me/919867861253" target="_blank" class="wa-fixed" title="WhatsApp">💬</a>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────────────────────────
+var currentLang = 'en';
+var currentPage = 'home';
+var currentFilter = 'all';
+var currentView = 'grid';
+var favorites = new Set();
+
+// ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
+var T = {
+en:{
+  nav_home:'Home',nav_trader:'Trader Flow',nav_retailer:'Retailer Flow',nav_farmer:'Farmer Flow',nav_dir:'Directory',
+  back:'Back',
+  home_hero_h1:"India's Complete Poultry Trading Platform",
+  home_hero_p:'Connect farmers, traders, and retailers with smart software built for India\'s poultry industry.',
+  home_cta_trader:'Explore Trader Flow',home_cta_dir:'Browse Directory',
+  home_products_h2:'Our Software Products',
+  home_products_p:'Three powerful apps for every player in the poultry supply chain.',
+  badge_live:'LIVE',badge_ready:'LAUNCH READY',badge_soon:'COMING SOON',
+  prod_trader_name:'Poultry Trader Flow',prod_trader_desc:'End-to-end trading management for poultry wholesalers.',
+  prod_retailer_name:'Poultry Retailer Flow',prod_retailer_desc:'Smart retail management for poultry shops.',
+  prod_farmer_name:'Poultry Farmer Flow',prod_farmer_desc:'Farm management tool for poultry farmers.',
+  home_explore:'Explore →',
+  why_h2:'Why Choose Poultry Trading India?',
+  why1_h:'Works Offline',why1_p:'All apps work without internet. Sync when connected.',
+  why2_h:'12 Indian Languages',why2_p:'Full UI in Hindi, Bengali, Telugu, Marathi, Tamil, and more.',
+  why3_h:'Your Data, Your Device',why3_p:'Data stored locally. Privacy by design.',
+  why4_h:'Affordable Pricing',why4_p:'Plans starting free. Upgrade when your business grows.',
+  home_footer_cta_h:'Ready to grow your poultry business?',
+  home_footer_cta_p:'Join thousands of professionals across India using our apps.',
+  wa_chat:'Chat on WhatsApp',wa_download:'Get on WhatsApp',wa_notify:'Notify Me at Launch',
+  footer_tagline:"Empowering India's Poultry Industry",
+  trader_hero_p:'The complete trading management app for poultry wholesalers.',
+  features_h2:'Key Features',
+  tf1_h:'Purchase Management',tf1_p:'Record buys from farmers with full details.',
+  tf2_h:'Sales Management',tf2_p:'Bill retailers. Track dues and payments.',
+  tf3_h:'Ledger & Accounts',tf3_p:'Full party ledger and daily P&L.',
+  tf4_h:'Stock Tracking',tf4_p:'Live inventory with automatic adjustments.',
+  tf5_h:'Reports & Analytics',tf5_p:'Daily, weekly, monthly profit reports.',
+  tf6_h:'Works Offline',tf6_p:'100% offline. Auto-sync when online.',
+  screenshots_h2:'App Screenshots',screenshots_p:'A glimpse of the intuitive interface.',
+  sc1:'Dashboard',sc2:'New Sale',sc3:'Ledger View',sc4:'Reports',
+  video_h2:'Watch Demo',
+  video_soon_h:'Demo Videos Coming Soon',
+  video_soon_p:'We are recording walkthroughs. Chat with us on WhatsApp for a live demo.',
+  install_h2:'How to Install',
+  step1_h:'Contact Us',step1_p:'Message us on WhatsApp with your business name.',
+  step2_h:'Receive APK',step2_p:'We send the APK directly to your WhatsApp.',
+  step3_h:'Install App',step3_p:'Tap the APK to install. Takes 30 seconds.',
+  step4_h:'Start Trading',step4_p:'Set up your profile and start adding parties.',
+  pricing_h2:'Choose Your Plan',pricing_p:'Simple pricing. No hidden fees.',
+  faq_h2:'Frequently Asked Questions',
+  trader_cta_h:'Ready to manage your trading business smarter?',
+  trader_cta_p:'Download now. Setup in under 10 minutes.',
+  retailer_hero_p:'Smart retail management for poultry shops.',
+  rf1_h:'Quick Billing',rf1_p:'Generate bills in seconds. Share via WhatsApp.',
+  rf2_h:'Inventory Control',rf2_p:'Track birds, cuts, eggs. Low-stock alerts.',
+  rf3_h:'Customer Accounts',rf3_p:'Credit accounts. Track dues and history.',
+  rf4_h:'Daily Reports',rf4_p:'End-of-day summary in one tap.',
+  retailer_notify_h:'Launching Soon — Be First in Line',
+  retailer_notify_p:'Register your interest for early access and a launch discount.',
+  retailer_cta_h:'Transform your poultry shop today.',
+  retailer_cta_p:'Be among the first retailers to get access.',
+  view_pricing:'View Pricing',
+  farmer_hero_p:'Farm management for poultry farmers. Track flocks, feed, health, and profits.',
+  farmer_cs_h:'Under Development',
+  farmer_cs_p:'Poultry Farmer Flow is being built with inputs from farmers across India.',
+  farmer_cs_p2:'Register your interest and help us shape the product.',
+  farmer_cs_cta:'Register My Interest',
+  pricing_planned_h2:'Planned Pricing',pricing_planned_p:'Indicative — subject to change before launch.',
+  farmer_cta_h:'Help us build the perfect farm app.',
+  farmer_cta_p:'Your feedback shapes what we build.',
+  dir_hero_h:'Industry Directory',
+  dir_hero_p:'Find verified farmers, traders, retailers, and suppliers.',
+  dir_search_ph:'Search by name, city, product…',
+  sort_name:'Name A–Z',sort_city:'City',sort_fav:'Favourites First',
+  filter_all:'All',filter_farmer:'Farmers',filter_trader:'Traders',filter_retailer:'Retailers',filter_supplier:'Suppliers',
+  dir_list_h:'List Your Business',
+  dir_list_p:'Get discovered by buyers and sellers across India. Free listing.',
+  dir_list_cta:'Add Free Listing',
+  wa_label:'WhatsApp',fav_add:'☆ Save',fav_remove:'★ Saved',
+  dir_no_results:'No listings found. Try a different search or filter.'
+},
+hi:{
+  nav_home:'होम',nav_trader:'ट्रेडर फ्लो',nav_retailer:'रिटेलर फ्लो',nav_farmer:'किसान फ्लो',nav_dir:'डायरेक्टरी',
+  back:'वापस',
+  home_hero_h1:'भारत का सम्पूर्ण पोल्ट्री ट्रेडिंग प्लेटफॉर्म',
+  home_hero_p:'किसानों, व्यापारियों और रिटेलरों को स्मार्ट सॉफ्टवेयर से जोड़ें।',
+  home_cta_trader:'ट्रेडर फ्लो देखें',home_cta_dir:'डायरेक्टरी देखें',
+  home_products_h2:'हमारे सॉफ्टवेयर उत्पाद',home_products_p:'पोल्ट्री सप्लाई चेन के हर खिलाड़ी के लिए तीन शक्तिशाली ऐप।',
+  badge_live:'लाइव',badge_ready:'लॉन्च रेडी',badge_soon:'जल्द आ रहा है',
+  prod_trader_name:'पोल्ट्री ट्रेडर फ्लो',prod_trader_desc:'पोल्ट्री थोक व्यापारियों के लिए पूर्ण ट्रेडिंग प्रबंधन।',
+  prod_retailer_name:'पोल्ट्री रिटेलर फ्लो',prod_retailer_desc:'पोल्ट्री दुकानों के लिए स्मार्ट रिटेल प्रबंधन।',
+  prod_farmer_name:'पोल्ट्री किसान फ्लो',prod_farmer_desc:'पोल्ट्री किसानों के लिए फार्म प्रबंधन उपकरण।',
+  home_explore:'देखें →',
+  why_h2:'पोल्ट्री ट्रेडिंग इंडिया क्यों चुनें?',
+  why1_h:'ऑफलाइन काम करता है',why1_p:'बिना इंटरनेट के काम। कनेक्ट होने पर सिंक।',
+  why2_h:'12 भारतीय भाषाएं',why2_p:'हिंदी, बंगाली, तेलुगु, मराठी, तमिल और अधिक में पूरा UI।',
+  why3_h:'आपका डेटा, आपके डिवाइस पर',why3_p:'डेटा डिवाइस पर संग्रहीत। गोपनीयता सुनिश्चित।',
+  why4_h:'किफायती मूल्य',why4_p:'मुफ्त से शुरुआत। व्यवसाय बढ़ने पर अपग्रेड करें।',
+  home_footer_cta_h:'अपना पोल्ट्री व्यवसाय बढ़ाने के लिए तैयार हैं?',
+  home_footer_cta_p:'हमारे ऐप का उपयोग करने वाले हजारों पेशेवरों से जुड़ें।',
+  wa_chat:'व्हाट्सएप पर बात करें',wa_download:'व्हाट्सएप पर पाएं',wa_notify:'लॉन्च पर सूचित करें',
+  footer_tagline:'भारत के पोल्ट्री उद्योग को सशक्त बनाना',
+  features_h2:'मुख्य विशेषताएं',screenshots_h2:'ऐप स्क्रीनशॉट',screenshots_p:'सहज इंटरफ़ेस की एक झलक।',
+  sc1:'डैशबोर्ड',sc2:'नई बिक्री',sc3:'लेजर व्यू',sc4:'रिपोर्ट',
+  video_h2:'डेमो देखें',video_soon_h:'डेमो वीडियो जल्द आएंगे',video_soon_p:'व्हाट्सएप पर लाइव डेमो के लिए संपर्क करें।',
+  install_h2:'इंस्टॉल कैसे करें',
+  step1_h:'हमसे संपर्क करें',step1_p:'व्हाट्सएप पर अपना व्यवसाय नाम भेजें।',
+  step2_h:'APK प्राप्त करें',step2_p:'हम APK सीधे आपके व्हाट्सएप पर भेजेंगे।',
+  step3_h:'ऐप इंस्टॉल करें',step3_p:'APK टैप करें। 30 सेकंड में इंस्टॉल।',
+  step4_h:'ट्रेडिंग शुरू करें',step4_p:'प्रोफाइल सेट करें और पार्टियां जोड़ें।',
+  pricing_h2:'अपनी योजना चुनें',pricing_p:'सरल मूल्य। कोई छुपी हुई फीस नहीं।',
+  faq_h2:'अक्सर पूछे जाने वाले सवाल',
+  trader_cta_h:'अपने ट्रेडिंग व्यवसाय को स्मार्ट तरीके से प्रबंधित करने के लिए तैयार हैं?',
+  trader_cta_p:'अभी डाउनलोड करें। 10 मिनट में सेटअप।',
+  view_pricing:'मूल्य देखें',
+  retailer_notify_h:'जल्द लॉन्च — पहले रजिस्टर करें',
+  retailer_notify_p:'अर्ली एक्सेस के लिए रुचि दर्ज करें।',
+  retailer_cta_h:'आज अपनी पोल्ट्री दुकान बदलें।',
+  retailer_cta_p:'पहले रिटेलरों में से एक बनें।',
+  farmer_cs_h:'विकास में है',farmer_cs_p:'किसानों के सुझावों से बन रहा है।',
+  farmer_cs_p2:'अपनी रुचि दर्ज करें।',farmer_cs_cta:'रुचि दर्ज करें',
+  pricing_planned_h2:'प्रस्तावित मूल्य',pricing_planned_p:'लॉन्च से पहले बदल सकता है।',
+  farmer_cta_h:'हमें सही ऐप बनाने में मदद करें।',farmer_cta_p:'आपकी प्रतिक्रिया से हम बनाते हैं।',
+  dir_hero_h:'उद्योग डायरेक्टरी',dir_hero_p:'किसानों, व्यापारियों, रिटेलरों को खोजें।',
+  dir_search_ph:'नाम, शहर, उत्पाद से खोजें…',
+  sort_name:'नाम A–Z',sort_city:'शहर',sort_fav:'पसंदीदा पहले',
+  filter_all:'सभी',filter_farmer:'किसान',filter_trader:'व्यापारी',filter_retailer:'रिटेलर',filter_supplier:'सप्लायर',
+  dir_list_h:'अपना व्यवसाय सूचीबद्ध करें',dir_list_p:'मुफ्त लिस्टिंग से खरीदारों तक पहुंचें।',dir_list_cta:'मुफ्त लिस्टिंग जोड़ें',
+  wa_label:'व्हाट्सएप',fav_add:'☆ सेव',fav_remove:'★ सेव्ड',
+  dir_no_results:'कोई परिणाम नहीं मिला।'
+},
+bn:{
+  nav_home:'হোম',nav_trader:'ট্রেডার ফ্লো',nav_retailer:'রিটেইলার ফ্লো',nav_farmer:'কৃষক ফ্লো',nav_dir:'ডিরেক্টরি',
+  back:'ফিরুন',
+  home_hero_h1:'ভারতের সম্পূর্ণ পোল্ট্রি ট্রেডিং প্ল্যাটফর্ম',
+  home_hero_p:'কৃষক, ব্যবসায়ী এবং খুচরা বিক্রেতাদের স্মার্ট সফটওয়্যার দিয়ে সংযুক্ত করুন।',
+  home_cta_trader:'ট্রেডার ফ্লো দেখুন',home_cta_dir:'ডিরেক্টরি দেখুন',
+  home_products_h2:'আমাদের সফটওয়্যার পণ্য',home_products_p:'পোল্ট্রি সাপ্লাই চেইনের প্রতিটি অংশীদারের জন্য তিনটি শক্তিশালী অ্যাপ।',
+  badge_live:'লাইভ',badge_ready:'লঞ্চ রেডি',badge_soon:'শীঘ্রই আসছে',
+  prod_trader_name:'পোল্ট্রি ট্রেডার ফ্লো',prod_trader_desc:'পোল্ট্রি পাইকারদের জন্য সম্পূর্ণ ট্রেডিং ম্যানেজমেন্ট।',
+  prod_retailer_name:'পোল্ট্রি রিটেইলার ফ্লো',prod_retailer_desc:'পোল্ট্রি দোকানের জন্য স্মার্ট রিটেইল ম্যানেজমেন্ট।',
+  prod_farmer_name:'পোল্ট্রি কৃষক ফ্লো',prod_farmer_desc:'পোল্ট্রি কৃষকদের জন্য ফার্ম ম্যানেজমেন্ট টুল।',
+  home_explore:'দেখুন →',why_h2:'পোল্ট্রি ট্রেডিং ইন্ডিয়া কেন বেছে নেবেন?',
+  why1_h:'অফলাইনে কাজ করে',why1_p:'ইন্টারনেট ছাড়াই কাজ।',
+  why2_h:'১২টি ভারতীয় ভাষা',why2_p:'হিন্দি, বাংলা, তেলুগু সহ সম্পূর্ণ UI।',
+  why3_h:'আপনার ডেটা আপনার ডিভাইসে',why3_p:'ডিভাইসে সংরক্ষিত। গোপনীয়তা নিশ্চিত।',
+  why4_h:'সাশ্রয়ী মূল্য',why4_p:'বিনামূল্যে শুরু। ব্যবসা বাড়লে আপগ্রেড করুন।',
+  home_footer_cta_h:'আপনার পোল্ট্রি ব্যবসা বাড়াতে প্রস্তুত?',home_footer_cta_p:'হাজারো পেশাদারদের সাথে যোগ দিন।',
+  wa_chat:'WhatsApp-এ চ্যাট করুন',wa_download:'WhatsApp-এ পান',wa_notify:'লঞ্চে জানান',
+  footer_tagline:'ভারতের পোল্ট্রি শিল্পকে শক্তিশালী করা',
+  features_h2:'মূল বৈশিষ্ট্য',screenshots_h2:'অ্যাপ স্ক্রিনশট',screenshots_p:'',
+  sc1:'ড্যাশবোর্ড',sc2:'নতুন বিক্রয়',sc3:'লেজার ভিউ',sc4:'রিপোর্ট',
+  video_h2:'ডেমো দেখুন',video_soon_h:'ডেমো ভিডিও শীঘ্রই',video_soon_p:'WhatsApp-এ যোগাযোগ করুন লাইভ ডেমোর জন্য।',
+  install_h2:'কীভাবে ইনস্টল করবেন',
+  step1_h:'যোগাযোগ করুন',step1_p:'WhatsApp-এ আপনার ব্যবসার নাম পাঠান।',
+  step2_h:'APK পান',step2_p:'আমরা APK সরাসরি পাঠাব।',
+  step3_h:'অ্যাপ ইনস্টল করুন',step3_p:'APK ট্যাপ করুন।',
+  step4_h:'ট্রেডিং শুরু করুন',step4_p:'প্রোফাইল সেট করুন।',
+  pricing_h2:'আপনার প্ল্যান বেছে নিন',pricing_p:'সহজ মূল্য।',
+  faq_h2:'সচরাচর জিজ্ঞাসিত প্রশ্ন',
+  trader_cta_h:'আপনার ব্যবসা স্মার্টভাবে পরিচালনা করতে প্রস্তুত?',trader_cta_p:'এখনই ডাউনলোড করুন।',
+  view_pricing:'মূল্য দেখুন',
+  retailer_notify_h:'শীঘ্রই লঞ্চ',retailer_notify_p:'আর্লি অ্যাক্সেসের জন্য নিবন্ধন করুন।',
+  retailer_cta_h:'আজই আপনার দোকান পরিবর্তন করুন।',retailer_cta_p:'প্রথম রিটেইলারদের মধ্যে থাকুন।',
+  farmer_cs_h:'উন্নয়নাধীন',farmer_cs_p:'কৃষকদের মতামত নিয়ে তৈরি হচ্ছে।',
+  farmer_cs_p2:'আপনার আগ্রহ নিবন্ধন করুন।',farmer_cs_cta:'আগ্রহ নিবন্ধন করুন',
+  pricing_planned_h2:'পরিকল্পিত মূল্য',pricing_planned_p:'লঞ্চের আগে পরিবর্তন হতে পারে।',
+  farmer_cta_h:'আমাদের সঠিক অ্যাপ তৈরি করতে সাহায্য করুন।',farmer_cta_p:'আপনার মতামতই আমাদের পথ।',
+  dir_hero_h:'শিল্প ডিরেক্টরি',dir_hero_p:'কৃষক, ব্যবসায়ী, রিটেইলার খুঁজুন।',
+  dir_search_ph:'নাম, শহর দিয়ে খুঁজুন…',
+  sort_name:'নাম A–Z',sort_city:'শহর',sort_fav:'পছন্দের প্রথমে',
+  filter_all:'সব',filter_farmer:'কৃষক',filter_trader:'ব্যবসায়ী',filter_retailer:'রিটেইলার',filter_supplier:'সরবরাহকারী',
+  dir_list_h:'আপনার ব্যবসা তালিকাভুক্ত করুন',dir_list_p:'বিনামূল্যে তালিকা।',dir_list_cta:'বিনামূল্যে তালিকা যোগ করুন',
+  wa_label:'WhatsApp',fav_add:'☆ সেভ',fav_remove:'★ সেভড',dir_no_results:'কোনো ফলাফল নেই।'
+},
+ur:{
+  nav_home:'ہوم',nav_trader:'ٹریڈر فلو',nav_retailer:'ریٹیلر فلو',nav_farmer:'کسان فلو',nav_dir:'ڈائریکٹری',
+  back:'واپس',
+  home_hero_h1:'بھارت کا مکمل پولٹری ٹریڈنگ پلیٹ فارم',
+  home_hero_p:'کسانوں، تاجروں اور خوردہ فروشوں کو ذہین سافٹ ویئر سے جوڑیں۔',
+  home_cta_trader:'ٹریڈر فلو دیکھیں',home_cta_dir:'ڈائریکٹری دیکھیں',
+  home_products_h2:'ہمارے سافٹ ویئر پروڈکٹس',home_products_p:'پولٹری سپلائی چین کے ہر کھلاڑی کے لیے تین طاقتور ایپس۔',
+  badge_live:'لائیو',badge_ready:'لانچ ریڈی',badge_soon:'جلد آ رہا ہے',
+  prod_trader_name:'پولٹری ٹریڈر فلو',prod_trader_desc:'پولٹری تھوک فروشوں کے لیے مکمل ٹریڈنگ مینجمنٹ۔',
+  prod_retailer_name:'پولٹری ریٹیلر فلو',prod_retailer_desc:'پولٹری دکانوں کے لیے ذہین ریٹیل مینجمنٹ۔',
+  prod_farmer_name:'پولٹری کسان فلو',prod_farmer_desc:'پولٹری کسانوں کے لیے فارم مینجمنٹ ٹول۔',
+  home_explore:'دیکھیں ←',
+  why_h2:'پولٹری ٹریڈنگ انڈیا کیوں منتخب کریں؟',
+  why1_h:'آف لائن کام کرتا ہے',why1_p:'بغیر انٹرنیٹ کے کام۔',
+  why2_h:'12 بھارتی زبانیں',why2_p:'ہندی، بنگالی، تیلگو سمیت مکمل UI۔',
+  why3_h:'آپ کا ڈیٹا آپ کے ڈیوائس پر',why3_p:'مقامی طور پر محفوظ۔ رازداری یقینی۔',
+  why4_h:'سستی قیمتیں',why4_p:'مفت سے شروع۔ کاروبار بڑھنے پر اپ گریڈ کریں۔',
+  home_footer_cta_h:'اپنا پولٹری کاروبار بڑھانے کے لیے تیار ہیں؟',home_footer_cta_p:'ہزاروں پیشہ ور افراد سے جڑیں۔',
+  wa_chat:'واٹس ایپ پر چیٹ کریں',wa_download:'واٹس ایپ پر حاصل کریں',wa_notify:'لانچ پر اطلاع دیں',
+  footer_tagline:'بھارت کی پولٹری صنعت کو بااختیار بنانا',
+  features_h2:'اہم خصوصیات',screenshots_h2:'ایپ اسکرین شاٹس',screenshots_p:'',
+  sc1:'ڈیش بورڈ',sc2:'نئی فروخت',sc3:'لیجر ویو',sc4:'رپورٹس',
+  video_h2:'ڈیمو دیکھیں',video_soon_h:'ڈیمو ویڈیوز جلد آ رہی ہیں',video_soon_p:'لائیو ڈیمو کے لیے واٹس ایپ پر رابطہ کریں۔',
+  install_h2:'انسٹال کیسے کریں',
+  step1_h:'ہم سے رابطہ کریں',step1_p:'واٹس ایپ پر اپنا کاروباری نام بھیجیں۔',
+  step2_h:'APK حاصل کریں',step2_p:'ہم APK آپ کے واٹس ایپ پر بھیجیں گے۔',
+  step3_h:'ایپ انسٹال کریں',step3_p:'APK پر ٹیپ کریں۔',
+  step4_h:'ٹریڈنگ شروع کریں',step4_p:'پروفائل سیٹ کریں۔',
+  pricing_h2:'اپنا پلان منتخب کریں',pricing_p:'سادہ قیمتیں۔',
+  faq_h2:'اکثر پوچھے جانے والے سوالات',
+  trader_cta_h:'اپنے ٹریڈنگ کاروبار کو ذہانت سے چلانے کے لیے تیار ہیں؟',trader_cta_p:'ابھی ڈاؤن لوڈ کریں۔',
+  view_pricing:'قیمت دیکھیں',
+  retailer_notify_h:'جلد لانچ',retailer_notify_p:'ارلی ایکسیس کے لیے رجسٹر کریں۔',
+  retailer_cta_h:'آج اپنی دکان بدلیں۔',retailer_cta_p:'پہلے ریٹیلرز میں شامل ہوں۔',
+  farmer_cs_h:'ترقی میں ہے',farmer_cs_p:'کسانوں کی آراء سے بن رہا ہے۔',
+  farmer_cs_p2:'اپنی دلچسپی رجسٹر کریں۔',farmer_cs_cta:'دلچسپی رجسٹر کریں',
+  pricing_planned_h2:'منصوبہ بند قیمتیں',pricing_planned_p:'لانچ سے پہلے تبدیل ہو سکتی ہیں۔',
+  farmer_cta_h:'ہمیں بہترین ایپ بنانے میں مدد کریں۔',farmer_cta_p:'آپ کی رائے ہمارا راستہ ہے۔',
+  dir_hero_h:'صنعتی ڈائریکٹری',dir_hero_p:'کسان، تاجر، ریٹیلر تلاش کریں۔',
+  dir_search_ph:'نام، شہر سے تلاش کریں…',
+  sort_name:'نام A–Z',sort_city:'شہر',sort_fav:'پسندیدہ پہلے',
+  filter_all:'سب',filter_farmer:'کسان',filter_trader:'تاجر',filter_retailer:'ریٹیلر',filter_supplier:'سپلائر',
+  dir_list_h:'اپنا کاروبار درج کریں',dir_list_p:'مفت لسٹنگ۔',dir_list_cta:'مفت لسٹنگ شامل کریں',
+  wa_label:'واٹس ایپ',fav_add:'☆ محفوظ',fav_remove:'★ محفوظ',dir_no_results:'کوئی نتیجہ نہیں ملا۔'
+}
+};
+
+// Fill remaining languages with English fallback (te, mr, ta, gu, kn, ml, pa, ar)
+['te','mr','ta','gu','kn','ml','pa','ar'].forEach(function(code){
+  var overrides = {
+    te:{nav_home:'హోమ్',nav_trader:'ట్రేడర్ ఫ్లో',nav_retailer:'రిటైలర్ ఫ్లో',nav_farmer:'రైతు ఫ్లో',nav_dir:'డైరెక్టరీ',back:'వెనుకకు',home_hero_h1:'భారతదేశపు పూర్తి పౌల్ట్రీ ట్రేడింగ్ ప్లాట్‌ఫారమ్',badge_live:'లైవ్',badge_ready:'లాంచ్ రెడీ',badge_soon:'త్వరలో వస్తోంది',footer_tagline:'భారతదేశపు పౌల్ట్రీ పరిశ్రమను శక్తివంతం చేయడం'},
+    mr:{nav_home:'होम',nav_trader:'ट्रेडर फ्लो',nav_retailer:'रिटेलर फ्लो',nav_farmer:'शेतकरी फ्लो',nav_dir:'डिरेक्टरी',back:'मागे',home_hero_h1:'भारताचे संपूर्ण पोल्ट्री ट्रेडिंग व्यासपीठ',badge_live:'थेट',badge_ready:'लॉन्च रेडी',badge_soon:'लवकरच येत आहे',footer_tagline:'भारताच्या पोल्ट्री उद्योगाला सशक्त करणे'},
+    ta:{nav_home:'முகப்பு',nav_trader:'வர்த்தகர் ஓட்டம்',nav_retailer:'சில்லறை ஓட்டம்',nav_farmer:'விவசாயி ஓட்டம்',nav_dir:'அடைவு',back:'பின்செல்',home_hero_h1:'இந்தியாவின் முழுமையான கோழி வர்த்தக தளம்',badge_live:'நேரடி',badge_ready:'தொடங்க தயார்',badge_soon:'விரைவில்',footer_tagline:'இந்தியாவின் கோழி தொழிலை மேம்படுத்துவோம்'},
+    gu:{nav_home:'હોમ',nav_trader:'ટ્રેડર ફ્લો',nav_retailer:'રિટેઇલર ફ્લો',nav_farmer:'ખેડૂત ફ્લો',nav_dir:'ડિરેક્ટરી',back:'પાછળ',home_hero_h1:'ભારતનું સંપૂર્ણ પોલ્ટ્રી ટ્રેડિંગ પ્લેટફોર્મ',badge_live:'લાઇવ',badge_ready:'લૉન્ચ રેડી',badge_soon:'જલ્દી આવી રહ્યું છે',footer_tagline:'ભારતના પોલ્ટ્રી ઉદ્યોગને સશક્ત બનાવવું'},
+    kn:{nav_home:'ಮುಖಪುಟ',nav_trader:'ವ್ಯಾಪಾರಿ ಹರಿವು',nav_retailer:'ಚಿಲ್ಲರೆ ಹರಿವು',nav_farmer:'ರೈತ ಹರಿವು',nav_dir:'ಡೈರೆಕ್ಟರಿ',back:'ಹಿಂದೆ',home_hero_h1:'ಭಾರತದ ಸಂಪೂರ್ಣ ಕೋಳಿ ವ್ಯಾಪಾರ ವೇದಿಕೆ',badge_live:'ಲೈವ್',badge_ready:'ಲಾಂಚ್ ರೆಡಿ',badge_soon:'ಶೀಘ್ರದಲ್ಲೇ',footer_tagline:'ಭಾರತದ ಕೋಳಿ ಉದ್ಯಮವನ್ನು ಸಬಲಗೊಳಿಸುವುದು'},
+    ml:{nav_home:'ഹോം',nav_trader:'ട്രേഡർ ഫ്ലോ',nav_retailer:'റിട്ടെയിലർ ഫ്ലോ',nav_farmer:'കർഷക ഫ്ലോ',nav_dir:'ഡയറക്ടറി',back:'തിരിച്ച്',home_hero_h1:'ഇന്ത്യയുടെ സമ്പൂർണ്ണ കോഴി വ്യാപാര പ്ലാറ്റ്ഫോം',badge_live:'ലൈവ്',badge_ready:'ലോഞ്ച് റെഡി',badge_soon:'ഉടൻ വരുന്നു',footer_tagline:'ഇന്ത്യയുടെ കോഴി വ്യവസായത്തെ ശക്തിപ്പെടുത്തുന്നു'},
+    pa:{nav_home:'ਹੋਮ',nav_trader:'ਟ੍ਰੇਡਰ ਫਲੋ',nav_retailer:'ਰਿਟੇਲਰ ਫਲੋ',nav_farmer:'ਕਿਸਾਨ ਫਲੋ',nav_dir:'ਡਾਇਰੈਕਟਰੀ',back:'ਵਾਪਸ',home_hero_h1:'ਭਾਰਤ ਦਾ ਸੰਪੂਰਨ ਪੋਲਟਰੀ ਟ੍ਰੇਡਿੰਗ ਪਲੇਟਫਾਰਮ',badge_live:'ਲਾਈਵ',badge_ready:'ਲਾਂਚ ਰੇਡੀ',badge_soon:'ਜਲਦੀ ਆ ਰਿਹਾ ਹੈ',footer_tagline:'ਭਾਰਤ ਦੇ ਪੋਲਟਰੀ ਉਦਯੋਗ ਨੂੰ ਸਸ਼ਕਤ ਕਰਨਾ'},
+    ar:{nav_home:'الرئيسية',nav_trader:'تدفق التاجر',nav_retailer:'تدفق التجزئة',nav_farmer:'تدفق المزارع',nav_dir:'الدليل',back:'رجوع',home_hero_h1:'منصة تداول الدواجن الشاملة في الهند',badge_live:'مباشر',badge_ready:'جاهز للإطلاق',badge_soon:'قريباً',footer_tagline:'تمكين صناعة الدواجن في الهند'}
+  };
+  T[code] = Object.assign({}, T['en'], overrides[code] || {});
+});
+
+// ─── PRICING DATA ─────────────────────────────────────────────────────────────
+var PLANS = [
+  {name:'Free',price:'₹0',period:'/month',desc:'Try with no commitment.',
+   features:['Up to 50 transactions/month','1 user','Basic reports','WhatsApp support'],popular:false},
+  {name:'Starter',price:'₹299',period:'/month',desc:'For growing businesses.',
+   features:['Unlimited transactions','1 user','All reports','Cloud backup','Priority support'],popular:false},
+  {name:'Pro',price:'₹599',period:'/month',desc:'For serious traders.',
+   features:['Everything in Starter','3 users','Advanced analytics','Multi-device sync','Dedicated support'],popular:true},
+  {name:'Business',price:'₹999',period:'/month',desc:'For large operations.',
+   features:['Everything in Pro','Unlimited users','API access','Custom branding','SLA support'],popular:false}
+];
+
+function renderPricing(containerId, waText) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  var html = '<div class="pricing-grid">';
+  PLANS.forEach(function(p) {
+    html += '<div class="price-card' + (p.popular?' popular':'') + '">';
+    if (p.popular) html += '<div class="price-ribbon">POPULAR</div>';
+    html += '<div class="price-name">' + p.name + '</div>';
+    html += '<div class="price-amount">' + p.price + '</div>';
+    html += '<div class="price-period">' + p.period + '</div>';
+    html += '<div class="price-desc">' + p.desc + '</div>';
+    html += '<ul class="price-features">';
+    p.features.forEach(function(f){ html += '<li>' + f + '</li>'; });
+    html += '</ul>';
+    var msg = encodeURIComponent('Hi, I want the ' + p.name + ' plan for ' + waText);
+    html += '<div class="price-cta"><a href="https://wa.me/919867861253?text=' + msg + '" target="_blank" class="btn ' + (p.popular?'btn-primary':'btn-navy') + '" style="width:100%;justify-content:center;">Get ' + p.name + '</a></div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// ─── FAQ DATA ─────────────────────────────────────────────────────────────────
+var FAQS = [
+  {q:'Do I need internet to use the app?',a:'No. The app works completely offline. Your data is stored on your device. You can optionally enable cloud backup to sync across devices when you have internet.'},
+  {q:'Which Android version is required?',a:'The app requires Android 7.0 (Nougat) or higher. It works on any budget Android smartphone.'},
+  {q:'Is my data safe?',a:'Yes. All data is stored locally on your device. We never upload your business data without your explicit permission.'},
+  {q:'Can I use it on multiple devices?',a:'The Starter plan supports 1 device. Pro and Business plans support multi-device sync via cloud backup.'},
+  {q:'How do I get support?',a:'WhatsApp our support team at +91-98678-61253. We respond within a few hours on weekdays.'}
+];
+
+function renderFAQ(containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  var html = '';
+  FAQS.forEach(function(f, i) {
+    html += '<div class="faq-item" id="faq-' + containerId + '-' + i + '">';
+    html += '<div class="faq-q" onclick="toggleFAQ(\'faq-' + containerId + '-' + i + '\')">';
+    html += '<span>' + f.q + '</span><span class="faq-arrow">▾</span></div>';
+    html += '<div class="faq-a">' + f.a + '</div>';
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+function toggleFAQ(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+// ─── DIRECTORY DATA ───────────────────────────────────────────────────────────
+var DIR_DATA = [
+  {id:1,name:'Rajan Poultry Farm',type:'Farmer',city:'Pune',state:'Maharashtra',products:'Broiler, Layer',desc:'500+ broiler batch capacity. Weekly supply to local traders.',wa:'919867861253'},
+  {id:2,name:'Hyderabad Fresh Chicken',type:'Trader',city:'Hyderabad',state:'Telangana',products:'Live Birds, Dressed',desc:'Major wholesale trader serving 200+ retailers daily.',wa:'919867861253'},
+  {id:3,name:'Krishna Chicken Centre',type:'Retailer',city:'Vijayawada',state:'Andhra Pradesh',products:'Dressed Chicken, Eggs',desc:'Retail shop with daily fresh stock and home delivery.',wa:'919867861253'},
+  {id:4,name:'Punjab Agro Feeds',type:'Supplier',city:'Ludhiana',state:'Punjab',products:'Poultry Feed, Supplements',desc:'Quality poultry feed manufacturer. 20 years in business.',wa:'919867861253'},
+  {id:5,name:'Delhi Murgh Mandi',type:'Trader',city:'Delhi',state:'Delhi',products:'Live Birds, Broiler',desc:'Largest poultry wholesale market in North Delhi.',wa:'919867861253'},
+  {id:6,name:'Suresh Poultry',type:'Farmer',city:'Nashik',state:'Maharashtra',products:'Broiler',desc:'2000 bird capacity farm. ISO certified. Direct supply.',wa:'919867861253'},
+  {id:7,name:'Chennai Chicken Hub',type:'Retailer',city:'Chennai',state:'Tamil Nadu',products:'Dressed Chicken, Curry Cut',desc:'Premium retail outlet. Online orders accepted.',wa:'919867861253'},
+  {id:8,name:'Coimbatore Feed Co.',type:'Supplier',city:'Coimbatore',state:'Tamil Nadu',products:'Feed, Vaccines',desc:'Distributor of top poultry vaccine brands.',wa:'919867861253'},
+  {id:9,name:'Kolkata Murgi Traders',type:'Trader',city:'Kolkata',state:'West Bengal',products:'Live Birds, Eggs',desc:'Wholesale eggs and live birds. Pan-Bengal network.',wa:'919867861253'},
+  {id:10,name:'Assam Broiler Farm',type:'Farmer',city:'Guwahati',state:'Assam',products:'Broiler, Country Chicken',desc:'Organic country chicken specialist.',wa:'919867861253'},
+  {id:11,name:'Bangalore Fresh Poultry',type:'Retailer',city:'Bangalore',state:'Karnataka',products:'All Cuts, Marinated',desc:'Modern retail with 15 chicken cuts. Pan-city delivery.',wa:'919867861253'},
+  {id:12,name:'Gujarat Poultry Feeds',type:'Supplier',city:'Ahmedabad',state:'Gujarat',products:'Feed, Equipment',desc:'Complete farm equipment and feed solutions.',wa:'919867861253'},
+  {id:13,name:'Jaipur Chicken Traders',type:'Trader',city:'Jaipur',state:'Rajasthan',products:'Broiler, Dressed',desc:'Reliable supply chain partner. Cold storage available.',wa:'919867861253'},
+  {id:14,name:'Odisha Poultry Farm',type:'Farmer',city:'Bhubaneswar',state:'Odisha',products:'Broiler, Layer, Eggs',desc:'3500 bird capacity. Weekly harvest. Competitive rates.',wa:'919867861253'},
+  {id:15,name:'Surat Murgh Market',type:'Trader',city:'Surat',state:'Gujarat',products:'Live Birds, Dressed',desc:'Surat\'s largest poultry wholesale hub.',wa:'919867861253'},
+  {id:16,name:'Kochi Chicken Corner',type:'Retailer',city:'Kochi',state:'Kerala',products:'Dressed, Country Chicken',desc:'Traditional Kerala-style dressed chicken shop.',wa:'919867861253'},
+  {id:17,name:'Haryana Agri Pharma',type:'Supplier',city:'Karnal',state:'Haryana',products:'Vaccines, Medicines',desc:'Licensed poultry medicine distributor for North India.',wa:'919867861253'},
+  {id:18,name:'Nagpur Poultry Hub',type:'Trader',city:'Nagpur',state:'Maharashtra',products:'Broiler, Layer',desc:'Central India distribution hub. 50+ retail clients.',wa:'919867861253'}
+];
+
+var categoryStyle = {
+  Farmer:{stripe:'#639922',avatarBg:'#EAF3DE',badgeBg:'#EAF3DE',badgeText:'#27500A'},
+  Trader:{stripe:'#BA7517',avatarBg:'#FAEEDA',badgeBg:'#FAEEDA',badgeText:'#633806'},
+  Retailer:{stripe:'#1B3A6B',avatarBg:'#E6F1FB',badgeBg:'#E6F1FB',badgeText:'#0C447C'},
+  Supplier:{stripe:'#7F77DD',avatarBg:'#EEEDFE',badgeBg:'#EEEDFE',badgeText:'#3C3489'}
+};
+
+function dirRender() {
+  var q = (document.getElementById('dir-search').value || '').toLowerCase();
+  var sort = document.getElementById('dir-sort').value;
+  var data = DIR_DATA.slice();
+
+  if (currentFilter !== 'all') data = data.filter(function(d){ return d.type === currentFilter; });
+  if (q) data = data.filter(function(d){
+    return d.name.toLowerCase().indexOf(q) > -1 ||
+           d.city.toLowerCase().indexOf(q) > -1 ||
+           d.products.toLowerCase().indexOf(q) > -1 ||
+           d.state.toLowerCase().indexOf(q) > -1;
+  });
+  if (sort === 'name') data.sort(function(a,b){ return a.name.localeCompare(b.name); });
+  else if (sort === 'city') data.sort(function(a,b){ return a.city.localeCompare(b.city); });
+  else if (sort === 'fav') data.sort(function(a,b){ return (favorites.has(b.id)?1:0) - (favorites.has(a.id)?1:0); });
+
+  var container = document.getElementById('dir-container');
+  if (!data.length) {
+    container.innerHTML = '<div class="dir-empty">' + (T[currentLang].dir_no_results || 'No results found.') + '</div>';
+    return;
+  }
+
+  var html = '';
+  data.forEach(function(d) {
+    var cs = categoryStyle[d.type] || categoryStyle.Trader;
+    var initials = d.name.split(' ').map(function(w){ return w[0]; }).slice(0,2).join('');
+    var isFav = favorites.has(d.id);
+    var waMsg = encodeURIComponent('Hi ' + d.name + ', I found you on Poultry Trading India directory.');
+    html += '<div class="dir-card">';
+    html += '<div class="dir-card-stripe" style="background:' + cs.stripe + '"></div>';
+    html += '<div style="flex:1;display:flex;flex-direction:column;">';
+    html += '<div class="dir-card-header">';
+    html += '<div class="dir-card-avatar" style="background:' + cs.avatarBg + ';color:' + cs.stripe + '">' + initials + '</div>';
+    html += '<div class="dir-card-info">';
+    html += '<h4>' + d.name + '</h4>';
+    html += '<div class="city">📍 ' + d.city + ', ' + d.state + '</div>';
+    html += '<span class="dir-badge" style="background:' + cs.badgeBg + ';color:' + cs.badgeText + '">' + d.type + '</span>';
+    html += '</div></div>';
+    html += '<div class="dir-card-body"><strong>Products:</strong> ' + d.products + '<br>' + d.desc + '</div>';
+    html += '<div class="dir-card-footer">';
+    html += '<a href="https://wa.me/' + d.wa + '?text=' + waMsg + '" target="_blank" class="dir-wa-btn">💬 WhatsApp</a>';
+    html += '<button class="dir-fav-btn' + (isFav?' faved':'') + '" onclick="toggleFav(' + d.id + ')" title="Save">' + (isFav?'★':'☆') + '</button>';
+    html += '</div></div></div>';
+  });
+  container.innerHTML = html;
+}
+
+function toggleFav(id) {
+  if (favorites.has(id)) favorites.delete(id);
+  else favorites.add(id);
+  dirRender();
+}
+
+function setFilter(f) {
+  currentFilter = f;
+  ['all','Farmer','Trader','Retailer','Supplier'].forEach(function(v){
+    var pill = document.getElementById('pill-' + v.toLowerCase());
+    if (pill) pill.classList.toggle('active', v === f || (f==='all' && v==='all'));
+  });
+  dirRender();
+}
+
+function setView(v) {
+  currentView = v;
+  var container = document.getElementById('dir-container');
+  if (container) {
+    if (v === 'list') container.classList.add('list-view');
+    else container.classList.remove('list-view');
+  }
+  document.getElementById('btn-grid').classList.toggle('active', v==='grid');
+  document.getElementById('btn-list').classList.toggle('active', v==='list');
+}
+
+// ─── PAGE ROUTING ─────────────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var el = document.getElementById('page-' + id);
+  if (el) el.classList.add('active');
+  currentPage = id;
+  document.querySelectorAll('.nav-link').forEach(function(l){ l.classList.remove('active'); });
+  var nl = document.getElementById('nl-' + id);
+  if (nl) nl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (id === 'dir') {
+    setTimeout(dirRender, 50);
+  }
+}
+
+// ─── LANGUAGE ─────────────────────────────────────────────────────────────────
+function setLang(code) {
+  currentLang = code;
+  var rtlLangs = ['ur','ar'];
+  var body = document.body;
+
+  // Remove old lang classes
+  body.className = body.className.replace(/lang-\S+/g,'').trim();
+  body.classList.add('lang-' + code);
+
+  if (rtlLangs.indexOf(code) > -1) body.classList.add('rtl');
+  else body.classList.remove('rtl');
+
+  var t = T[code] || T['en'];
+
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+    var key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+
+  // Update current lang display
+  var langNames = {en:'EN',hi:'HI',bn:'BN',te:'TE',mr:'MR',ta:'TA',gu:'GU',kn:'KN',ml:'ML',pa:'PA',ur:'UR',ar:'AR'};
+  document.getElementById('cur-lang').textContent = langNames[code] || code.toUpperCase();
+
+  // Update selected lang option
+  document.querySelectorAll('.lang-opt').forEach(function(o){ o.classList.remove('sel'); });
+  var opts = document.querySelectorAll('.lang-opt');
+  var langOrder = ['en','hi','bn','te','mr','ta','gu','kn','ml','pa','ur','ar'];
+  var idx = langOrder.indexOf(code);
+  if (opts[idx]) opts[idx].classList.add('sel');
+
+  // Re-render directory if active
+  if (currentPage === 'dir') dirRender();
+
+  toggleLangMenu(true); // close
+}
+
+function toggleLangMenu(forceClose) {
+  var menu = document.getElementById('lang-menu');
+  if (forceClose) { menu.classList.remove('open'); return; }
+  menu.classList.toggle('open');
+}
+
+// Close lang menu on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.lang-wrap')) {
+    var menu = document.getElementById('lang-menu');
+    if (menu) menu.classList.remove('open');
+  }
+});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+renderPricing('trader-price-cards', 'Poultry Trader Flow');
+renderPricing('retailer-price-cards', 'Poultry Retailer Flow');
+renderPricing('farmer-price-cards', 'Poultry Farmer Flow');
+renderFAQ('trader-faq');
+</script>
+</body>
+</html>
