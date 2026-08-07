@@ -714,6 +714,26 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
   margin-bottom: .85rem;
 }
 .p-divider { height: 1px; background: rgba(27,58,107,0.08); margin: .75rem 0; }
+.p-monthly {
+  font-size: .75rem;
+  color: var(--navy);
+  margin-bottom: .6rem;
+  padding: 6px 10px;
+  background: #e8ecf8;
+  border-radius: 6px;
+  border-left: 3px solid var(--navy);
+  line-height: 1.4;
+}
+.p-monthly .p-monthly-fee { font-size: 1rem; font-weight: 800; font-family: 'Baloo 2', cursive; color: var(--navy); }
+.p-monthly .p-monthly-label { font-size: .7rem; color: var(--text2); display: block; margin-top: 1px; }
+.p-devices {
+  font-size: .72rem;
+  color: var(--text2);
+  margin-bottom: .85rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 .p-features { list-style: none; margin-bottom: 1rem; }
 .p-features li {
   display: flex;
@@ -764,10 +784,10 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
       <span>www.poultrytrading.com</span>
     </a>
     <div class="nav-links">
+      <a onclick="showPage('directory')" id="nav-directory" data-i18n="nav_dir" class="active">Directory</a>
       <a onclick="showPage('trader')" id="nav-trader" data-i18n="nav_trader">Trader</a>
       <a onclick="showPage('retailer')" id="nav-retailer" data-i18n="nav_retailer">Retailer</a>
       <a onclick="showPage('farmer')" id="nav-farmer" data-i18n="nav_farmer">Farmer</a>
-      <a onclick="showPage('directory')" id="nav-directory" data-i18n="nav_dir">Directory</a>
     </div>
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -787,7 +807,7 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
 </nav>
 
 <!-- =================== HOME PAGE =================== -->
-<div id="page-home" class="page active">
+<div id="page-home" class="page">
   <div class="hero">
     <div class="hero-badge" data-i18n="home_badge">🇮🇳 Made for Indian Poultry Business</div>
     <h1 data-i18n="home_h1">Apne Poultry Business ke liye<br><span data-i18n="home_h1_span">Sahi Software</span></h1>
@@ -993,19 +1013,20 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
 
   <div class="section">
     <div class="section-title" data-i18n="price_title">Price</div>
-    <div class="section-sub">Apna plan chuno — lifetime license, no monthly fee</div>
+    <div class="section-sub">Apna plan chuno — lifetime license, no monthly fee on base plan</div>
     <div class="pricing-grid">
         <div class="p-card">
           
           <div class="p-icon">🖥️</div>
           <div class="p-name">Desktop Only</div>
+          <div class="p-devices">📱 1 Desktop</div>
           <div class="p-desc">Full software on your Windows PC. No internet needed.</div>
           <div class="p-old">₹14,999</div>
-          <div class="p-new"><sup>₹</sup>8,999</div>
-          <div class="p-save">Save ₹6,000</div>
+          <div class="p-new"><sup>₹</sup>12,999</div>
+          
           <div class="p-divider"></div>
-          <ul class="p-features"><li>Windows desktop software</li><li>Billing, shrinkage, reports</li><li>Unlimited data & bills</li><li>6 months WhatsApp support</li><li>YouTube training videos</li><li class="no">Mobile app ✗</li></ul>
-          <a href="https://wa.me/91XXXXXXXXXX?text=Mujhe%20Poultry%20Trader%20Flow%20Desktop" target="_blank" class="p-btn p-btn-secondary">
+          <ul class="p-features"><li>Windows desktop software</li><li>Flock & batch tracking</li><li>Feed & mortality records</li><li>6 months WhatsApp support</li><li>YouTube training videos</li></ul>
+          <a href="https://wa.me/91XXXXXXXXXX?text=Mujhe%20Poultry%20Farmer%20Flow%20Desktop" target="_blank" class="p-btn p-btn-secondary">
             WhatsApp pe Lo →
           </a>
         </div>
@@ -1013,13 +1034,14 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
           
           <div class="p-icon">📱</div>
           <div class="p-name">Mobile Only</div>
+          <div class="p-devices">📱 1 Device</div>
           <div class="p-desc">Full software on your Android phone. Use anywhere.</div>
           <div class="p-old">₹14,999</div>
-          <div class="p-new"><sup>₹</sup>8,999</div>
-          <div class="p-save">Save ₹6,000</div>
+          <div class="p-new"><sup>₹</sup>12,999</div>
+          
           <div class="p-divider"></div>
-          <ul class="p-features"><li>Android mobile app</li><li>Billing, shrinkage, reports</li><li>Unlimited data & bills</li><li>6 months WhatsApp support</li><li>YouTube training videos</li><li class="no">Desktop app ✗</li></ul>
-          <a href="https://wa.me/91XXXXXXXXXX?text=Mujhe%20Poultry%20Trader%20Flow%20Mobile" target="_blank" class="p-btn p-btn-secondary">
+          <ul class="p-features"><li>Android mobile app</li><li>Flock & batch tracking</li><li>Feed & mortality records</li><li>6 months WhatsApp support</li><li>YouTube training videos</li></ul>
+          <a href="https://wa.me/91XXXXXXXXXX?text=Mujhe%20Poultry%20Farmer%20Flow%20Mobile" target="_blank" class="p-btn p-btn-secondary">
             WhatsApp pe Lo →
           </a>
         </div>
@@ -1027,13 +1049,14 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
           <div class="p-popular">MOST POPULAR</div>
           <div class="p-icon">🖥️📊</div>
           <div class="p-name">Desktop + Mobile Reports</div>
+          <div class="p-devices">📱 1 Desktop & 2 Mobiles</div>
           <div class="p-desc">Desktop for full work. View reports on your phone anytime.</div>
           <div class="p-old">₹24,999</div>
-          <div class="p-new"><sup>₹</sup>12,999</div>
-          <div class="p-save">Save ₹12,000</div>
+          <div class="p-new"><sup>₹</sup>19,999</div>
+          <div class="p-monthly"><span class="p-monthly-fee">+ ₹800/month</span><span class="p-monthly-label">Mobile Sync — required for data connectivity</span></div>
           <div class="p-divider"></div>
-          <ul class="p-features"><li>Windows desktop software</li><li>Mobile app — reports view only</li><li>Billing, shrinkage, all reports</li><li>Unlimited data & bills</li><li>6 months WhatsApp support</li><li>YouTube training videos</li></ul>
-          <a href="https://wa.me/91XXXXXXXXXX?text=Mujhe%20Poultry%20Trader%20Flow%20Desktop%2BMobile%20Reports" target="_blank" class="p-btn p-btn-primary">
+          <ul class="p-features"><li>Windows desktop software</li><li>Mobile app — reports view only</li><li>Flock, feed & mortality tracking</li><li>Batch profitability reports</li><li>6 months WhatsApp support</li><li>YouTube training videos</li></ul>
+          <a href="https://wa.me/91XXXXXXXXXX?text=Mujhe%20Poultry%20Farmer%20Flow%20Desktop%2BMobile%20Reports" target="_blank" class="p-btn p-btn-primary">
             WhatsApp pe Lo →
           </a>
         </div>
@@ -1041,13 +1064,14 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
           
           <div class="p-icon">🚀</div>
           <div class="p-name">Desktop + Mobile Full</div>
+          <div class="p-devices">📱 1 Desktop & 5 Mobiles</div>
           <div class="p-desc">Full desktop + mobile for field team, delivery & collection.</div>
           <div class="p-old">₹49,999</div>
-          <div class="p-new"><sup>₹</sup>26,999</div>
-          <div class="p-save">Save ₹23,000</div>
+          <div class="p-new"><sup>₹</sup>36,999</div>
+          <div class="p-monthly"><span class="p-monthly-fee">+ ₹1,900/month</span><span class="p-monthly-label">Mobile Sync — required for data connectivity</span></div>
           <div class="p-divider"></div>
-          <ul class="p-features"><li>Windows desktop software</li><li>Full mobile app — data entry</li><li>Field team & delivery tracking</li><li>Collection management</li><li>Unlimited data & bills</li><li>6 months WhatsApp support</li></ul>
-          <a href="https://wa.me/91XXXXXXXXXX?text=Mujhe%20Poultry%20Trader%20Flow%20Full%20Suite" target="_blank" class="p-btn p-btn-secondary">
+          <ul class="p-features"><li>Windows desktop software</li><li>Full mobile app — data entry</li><li>Farm worker task tracking</li><li>Field data & collection</li><li>Batch profitability reports</li><li>6 months WhatsApp support</li></ul>
+          <a href="https://wa.me/91XXXXXXXXXX?text=Mujhe%20Poultry%20Farmer%20Flow%20Full%20Suite" target="_blank" class="p-btn p-btn-secondary">
             WhatsApp pe Lo →
           </a>
         </div>
@@ -1309,7 +1333,7 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
 <!-- Sticky WhatsApp -->
 
 <!-- =================== DIRECTORY PAGE =================== -->
-<div id="page-directory" class="page">
+<div id="page-directory" class="page active">
   <button class="back-btn" onclick="showPage('home')" data-i18n="btn_back">← Wapas Jao</button>
   <div class="section">
     <div class="section-title" data-i18n="dir_title">Industry Directory</div>
@@ -2191,6 +2215,10 @@ function showPage(id) {
 function toggleFaq(el) {
   el.parentElement.classList.toggle('open');
 }
+// Init directory on page load since it's the default page
+window.addEventListener('DOMContentLoaded', function() {
+  dirRender();
+});
 </script>
 </body>
 </html>
