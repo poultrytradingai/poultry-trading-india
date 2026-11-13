@@ -1,0 +1,14 @@
+# PoultryTrading
+
+> Software and business directory platform for the poultry industry in India. Separate software for poultry traders, retailers and farmers, plus a poultry industry directory. Site: https://poultrytrading.com/
+
+## Products
+
+- Poultry Trader Flow: accounting software for poultry traders.
+- Poultry Retailer Flow: shop management and accounting software for poultry retailers.
+- Poultry Farmer Flow: farm management and accounting software for poultry farmers.
+- Poultry Industry Directory: B2B directory of poultry businesses in India.
+
+## Main page
+
+- [PoultryTrading home](https://poultrytrading.com/): overview of all products and the directory.
