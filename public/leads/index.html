@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5F4P8CHG');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poultry Buy and Sell Enquiries – Import, Export and Local Trade | PoultryTrading</title>
+<meta name="description" content="Live poultry trade enquiries: frozen chicken, eggs, chicks, feed and equipment. Import, export and local buy and sell requirements from India, USA and worldwide.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://poultrytrading.com/leads/">
+<meta property="og:title" content="Poultry Buy and Sell Enquiries – PoultryTrading">
+<meta property="og:description" content="Live import, export and local poultry trade enquiries.">
+<meta property="og:url" content="https://poultrytrading.com/leads/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/forms.css">
+<link rel="stylesheet" href="/assets/browse.css">
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5F4P8CHG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<nav><div class="nav-inner">
+<a class="brand" href="/">PoultryTrading<span>Poultry industry platform</span></a>
+<div class="links"><a href="/directory/">Directory</a><a href="/leads/">Enquiries</a><a href="/list-your-business/">List free</a><a href="/contact/">Contact</a></div>
+</div></nav>
+<main class="wrap wide">
+<h1>Poultry Buy and Sell Enquiries</h1>
+<p class="intro">Live import, export and local trade requirements. Contact details are hidden.</p>
+<div class="stats">
+<div class="stat"><b data-s="liveEnquiries">0</b><span>Live enquiries</span></div>
+<div class="stat"><b data-s="newThisWeek">0</b><span>New this week</span></div>
+<div class="stat"><b data-s="countries">0</b><span>Countries</span></div>
+<div class="stat"><b data-s="listings">0</b><span>Listed businesses</span></div>
+</div>
+<a class="cta" href="/enquiry/import-export/">Post import / export enquiry</a>
+<a class="cta" href="/enquiry/local-trade/" style="margin-left:8px">Post local enquiry</a>
+<div class="bar"><input id="q" type="search" placeholder="Search product or country" aria-label="Search"></div>
+<div class="chips" id="chips">
+<button class="chip on" data-t="">All</button><button class="chip" data-t="import-export">Import / Export</button><button class="chip" data-t="local">Local</button>
+</div>
+<p class="count" id="count"></p>
+<div class="cards" id="cards"></div>
+<button class="more" id="more" hidden>Load more</button>
+</main>
+<footer>&copy; PoultryTrading.com &middot; <a href="/">Home</a> &middot; <a href="/directory/">Directory</a> &middot; <a href="/leads/">Enquiries</a> &middot; <a href="/contact/">Contact</a></footer>
+<script>
+(function(){
+  var all=[],view=[],shown=0,PAGE=24,type='';
+  var $=function(i){return document.getElementById(i)};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function ago(d){var m=Math.floor((Date.now()-new Date(d).getTime())/6e4);if(m<60)return Math.max(m,1)+' min ago';var h=Math.floor(m/60);if(h<24)return h+' h ago';var dd=Math.floor(h/24);return dd+' day'+(dd===1?'':'s')+' ago'}
+  function countUp(el,to){var n=0,step=Math.max(1,Math.ceil(to/30));var t=setInterval(function(){n+=step;if(n>=to){n=to;clearInterval(t)}el.textContent=n.toLocaleString()},30)}
+  fetch('/api/feed?action=stats').then(function(r){return r.json()}).then(function(s){
+    if(!s.ok)return;
+    document.querySelectorAll('[data-s]').forEach(function(el){countUp(el,Number(s[el.getAttribute('data-s')])||0)});
+  }).catch(function(){});
+  fetch('/api/feed?action=leads').then(function(r){return r.json()}).then(function(d){all=(d&&d.leads)||[];apply()})
+    .catch(function(){$('count').textContent='Could not load enquiries. Please refresh.'});
+  function apply(){
+    var q=$('q').value.trim().toLowerCase();
+    view=all.filter(function(x){return (!type||x.type===type)&&(!q||(x.product+' '+x.route).toLowerCase().indexOf(q)>-1)});
+    shown=0;$('cards').innerHTML='';render();
+    $('count').textContent=view.length+' enquir'+(view.length===1?'y':'ies');
+  }
+  function render(){
+    var week=Date.now()-7*864e5,html='';
+    view.slice(shown,shown+PAGE).forEach(function(x){
+      var label=(x.type==='local'?'Local':'Import / Export')+' &middot; '+esc(x.role);
+      var nw=new Date(x.date).getTime()>week?'<span class="bdg b-new">New</span>':'';
+      html+='<div class="card"><div class="row"><span>'+label+nw+'</span><span>'+ago(x.date)+'</span></div><div class="ct">'+esc(x.product)+', '+esc(x.quantity)+'</div><div class="cm">'+esc(x.route)+(x.incoterms?' &middot; '+esc(x.incoterms):'')+'</div><a class="unlock" href="/contact/">Unlock contact</a></div>';
+    });
+    $('cards').insertAdjacentHTML('beforeend',html);
+    shown+=PAGE;$('more').hidden=shown>=view.length;
+    if(!view.length)$('cards').innerHTML='<div class="empty">No enquiries yet. Be the first to post one.</div>';
+  }
+  $('q').addEventListener('input',apply);$('more').addEventListener('click',render);
+  $('chips').addEventListener('click',function(e){var c=e.target.closest('.chip');if(!c)return;type=c.getAttribute('data-t');document.querySelectorAll('.chip').forEach(function(x){x.classList.toggle('on',x===c)});apply()});
+})();
+</script>
+</body>
+</html>

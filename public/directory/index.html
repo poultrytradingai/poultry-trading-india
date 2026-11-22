@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5F4P8CHG');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poultry Business Directory – Hatcheries, Farms, Feed, Processors Worldwide | PoultryTrading</title>
+<meta name="description" content="Worldwide poultry business directory: hatcheries, farms, feed companies, processors, egg suppliers, equipment, vets and traders in India, USA and more. List your business free.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://poultrytrading.com/directory/">
+<meta property="og:title" content="Poultry Business Directory – PoultryTrading">
+<meta property="og:description" content="Find poultry hatcheries, farms, feed, processors, equipment and traders worldwide.">
+<meta property="og:url" content="https://poultrytrading.com/directory/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/forms.css">
+<link rel="stylesheet" href="/assets/browse.css">
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5F4P8CHG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<nav><div class="nav-inner">
+<a class="brand" href="/">PoultryTrading<span>Poultry industry platform</span></a>
+<div class="links"><a href="/directory/">Directory</a><a href="/leads/">Enquiries</a><a href="/list-your-business/">List free</a><a href="/contact/">Contact</a></div>
+</div></nav>
+<main class="wrap wide">
+<h1>Poultry Business Directory</h1>
+<p class="intro">Hatcheries, farms, feed companies, processors, egg suppliers, equipment makers, vets and traders from around the world.</p>
+<div class="stats">
+<div class="stat"><b data-s="listings">0</b><span>Listings</span></div>
+<div class="stat"><b data-s="countries">0</b><span>Countries</span></div>
+<div class="stat"><b data-s="liveEnquiries">0</b><span>Live enquiries</span></div>
+<div class="stat"><b data-s="newThisWeek">0</b><span>New this week</span></div>
+</div>
+<a class="cta" href="/list-your-business/">List your business free</a>
+<div class="bar"><input id="q" type="search" placeholder="Search business name" aria-label="Search"><select id="country" aria-label="Country"><option value="">All countries</option></select></div>
+<div class="chips" id="chips"></div>
+<p class="count" id="count"></p>
+<div class="cards" id="cards"></div>
+<button class="more" id="more" hidden>Load more</button>
+</main>
+<footer>&copy; PoultryTrading.com &middot; <a href="/">Home</a> &middot; <a href="/directory/">Directory</a> &middot; <a href="/leads/">Enquiries</a> &middot; <a href="/contact/">Contact</a></footer>
+<script>
+(function(){
+  var all=[],view=[],shown=0,PAGE=24,cat='';
+  var $=function(i){return document.getElementById(i)};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function countUp(el,to){var n=0,step=Math.max(1,Math.ceil(to/30));var t=setInterval(function(){n+=step;if(n>=to){n=to;clearInterval(t)}el.textContent=n.toLocaleString()},30)}
+  fetch('/api/feed?action=stats').then(function(r){return r.json()}).then(function(s){
+    if(!s.ok)return;
+    document.querySelectorAll('[data-s]').forEach(function(el){countUp(el,Number(s[el.getAttribute('data-s')])||0)});
+  }).catch(function(){});
+  fetch('/api/feed?action=listings').then(function(r){return r.json()}).then(function(d){
+    all=(d&&d.listings)||[];
+    var cs={},cats={};all.forEach(function(x){if(x.country)cs[x.country]=1;if(x.category)cats[x.category]=1});
+    $('country').innerHTML='<option value="">All countries</option>'+Object.keys(cs).sort().map(function(c){return '<option>'+esc(c)+'</option>'}).join('');
+    $('chips').innerHTML='<button class="chip on" data-c="">All</button>'+Object.keys(cats).sort().map(function(c){return '<button class="chip" data-c="'+esc(c)+'">'+esc(c)+'</button>'}).join('');
+    apply();
+  }).catch(function(){$('count').textContent='Could not load listings. Please refresh.'});
+  function apply(){
+    var q=$('q').value.trim().toLowerCase(),co=$('country').value;
+    view=all.filter(function(x){return (!co||x.country===co)&&(!cat||x.category===cat)&&(!q||String(x.name).toLowerCase().indexOf(q)>-1)});
+    view.sort(function(a,b){var fa=a.tier==='Featured'?1:0,fb=b.tier==='Featured'?1:0;return fb-fa||new Date(b.date)-new Date(a.date)});
+    shown=0;$('cards').innerHTML='';render();
+    $('count').textContent=view.length+' business'+(view.length===1?'':'es');
+  }
+  function render(){
+    var week=Date.now()-7*864e5,html='';
+    view.slice(shown,shown+PAGE).forEach(function(x){
+      var b='';
+      if(x.tier==='Featured')b+='<span class="bdg b-fea">Featured</span>';
+      b+=x.verified?'<span class="bdg b-ver">Verified</span>':'<span class="bdg b-unv">Unverified</span>';
+      if(new Date(x.date).getTime()>week)b+='<span class="bdg b-new">New</span>';
+      html+='<a class="card" href="/directory/'+encodeURIComponent(x.slug)+'"><div class="ct">'+esc(x.name)+'</div><div class="cm">'+esc(x.country)+'</div><div class="cm">'+esc(x.category)+' &rsaquo; '+esc(x.subCategory)+'</div><div class="lock">Contact hidden '+b+'</div></a>';
+    });
+    $('cards').insertAdjacentHTML('beforeend',html);
+    shown+=PAGE;$('more').hidden=shown>=view.length;
+    if(!view.length)$('cards').innerHTML='<div class="empty">No listings found. <a href="/list-your-business/">Add your business free</a>.</div>';
+  }
+  $('q').addEventListener('input',apply);$('country').addEventListener('change',apply);
+  $('more').addEventListener('click',render);
+  $('chips').addEventListener('click',function(e){var c=e.target.closest('.chip');if(!c)return;cat=c.getAttribute('data-c');document.querySelectorAll('.chip').forEach(function(x){x.classList.toggle('on',x===c)});apply()});
+})();
+</script>
+</body>
+</html>
