@@ -54,7 +54,7 @@
   function signIn(done) {
     modal('<h3>Sign in to view contact</h3><p>Free for verified members. Sign in with Google so contacts stay protected from misuse.</p>' +
       '<div id="ptG" style="min-height:44px"></div>' +
-      '<p class="ptm-s">By continuing you agree that your name and email are stored for verification. Contact details are shown to verified members only.</p>' +
+      '<p class="ptm-s">By continuing you agree to our <a href="/terms/" target="_blank">Terms</a> and <a href="/privacy/" target="_blank">Privacy Policy</a>. Your name and email are stored for verification.</p>' +
       '<p class="ptm-e" id="ptErr"></p>');
     loadGsi().then(function () {
       google.accounts.id.initialize({
