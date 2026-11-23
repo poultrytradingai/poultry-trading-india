@@ -66,7 +66,7 @@
     view.slice(shown,shown+PAGE).forEach(function(x){
       var label=(x.type==='local'?'Local':'Import / Export')+' &middot; '+esc(x.role);
       var nw=new Date(x.date).getTime()>week?'<span class="bdg b-new">New</span>':'';
-      html+='<div class="card"><div class="row"><span>'+label+nw+'</span><span>'+ago(x.date)+'</span></div><div class="ct">'+esc(x.product)+', '+esc(x.quantity)+'</div><div class="cm">'+esc(x.route)+(x.incoterms?' &middot; '+esc(x.incoterms):'')+'</div><a class="unlock" href="/contact/">Unlock contact</a></div>';
+      html+='<div class="card"><div class="row"><span>'+label+nw+'</span><span>'+ago(x.date)+'</span></div><div class="ct">'+esc(x.product)+', '+esc(x.quantity)+'</div><div class="cm">'+esc(x.route)+(x.incoterms?' &middot; '+esc(x.incoterms):'')+'</div><div data-unlock-box><button class="unlock" data-unlock="lead" data-id="'+esc(x.id)+'">Unlock contact</button></div></div>';
     });
     $('cards').insertAdjacentHTML('beforeend',html);
     shown+=PAGE;$('more').hidden=shown>=view.length;
@@ -76,5 +76,6 @@
   $('chips').addEventListener('click',function(e){var c=e.target.closest('.chip');if(!c)return;type=c.getAttribute('data-t');document.querySelectorAll('.chip').forEach(function(x){x.classList.toggle('on',x===c)});apply()});
 })();
 </script>
+<script src="/assets/member.js"></script>
 </body>
 </html>

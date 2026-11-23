@@ -111,10 +111,11 @@ async function handleListing(slug, env, ctx) {
   const body = `<p class="meta"><a href="/directory/">Directory</a> &rsaquo; ${esc(listing.category)}</p>
 <h1>${esc(listing.name)} ${badge}</h1>
 <p class="meta">${esc(listing.category)} &rsaquo; ${esc(listing.subCategory)} &middot; ${esc(listing.country)}</p>
-<div class="lockbox"><h2>Contact details</h2>
-<p>Phone, email and address are hidden. To get in touch with this business, send us a request.</p>
-<a class="cta" href="/contact/" style="margin:0">Request contact</a></div>
-<p class="note">Is this your business? <a href="/list-your-business/">Add or update your listing free</a>.</p>`;
+<div class="lockbox" data-unlock-box><h2>Contact details</h2>
+<p>Contact details are shown to verified members only. Sign in free with Google to view.</p>
+<button class="unlock" data-unlock="listing" data-id="${esc(listing.id)}" style="max-width:260px">Unlock contact</button></div>
+<p class="note">Is this your business? <a href="/list-your-business/">Add or update your listing free</a>.</p>
+<script src="/assets/member.js"></script>`;
 
   const html = shell({ title, desc, canonical, robots: listing.verified ? 'index, follow' : 'noindex, follow', body, ld });
   return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=300' } });
@@ -134,6 +135,160 @@ async function handleSitemap(env, ctx) {
   return new Response(xml, { headers: { 'Content-Type': 'application/xml', 'Cache-Control': 'public, max-age=3600' } });
 }
 
+
+/* ---------- members: Google sign-in, session, unlocks ---------- */
+const TOKENINFO = 'https://oauth2.googleapis.com/tokeninfo?id_token=';
+const DISPOSABLE = new Set(['mailinator.com','guerrillamail.com','guerrillamail.net','guerrillamail.org','grr.la','10minutemail.com','tempmail.com','temp-mail.org','tempail.com','tempr.email','yopmail.com','trashmail.com','getnada.com','sharklasers.com','throwawaymail.com','maildrop.cc','dispostable.com','fakeinbox.com','mintemail.com','mohmal.com','emailondeck.com','moakt.com','burnermail.io','spamgourmet.com','mailnesia.com','discard.email','mailcatcher.me','tmail.ws','emailfake.com','fakemail.net','inboxkitten.com','33mail.com','mailtemp.net','tempinbox.com','trbvm.com','dropmail.me','mytemp.email']);
+const enc = new TextEncoder();
+const okOrigin = (request) => {
+  const o = request.headers.get('Origin') || '';
+  return !o || /^https:\/\/(www\.)?poultrytrading\.com$/.test(o) || o.endsWith('.workers.dev');
+};
+const b64u = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const unb64u = (s) => atob(s.replace(/-/g, '+').replace(/_/g, '/'));
+const safeEq = (a, b) => { if (a.length !== b.length) return false; let r = 0; for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i); return r === 0; };
+const today = () => new Date().toISOString().slice(0, 10);
+
+async function hmac(secret, data) {
+  const key = await crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return b64u(await crypto.subtle.sign('HMAC', key, enc.encode(data)));
+}
+async function makeSession(env, sub) {
+  const payload = b64u(enc.encode(JSON.stringify({ sub, exp: Date.now() + 30 * 864e5 })));
+  return payload + '.' + (await hmac(env.SESSION_SECRET, payload));
+}
+async function getSession(request, env) {
+  try {
+    const m = (request.headers.get('Cookie') || '').match(/(?:^|; )pt_session=([^;]*)/);
+    if (!m || !env.SESSION_SECRET) return null;
+    const [payload, sig] = m[1].split('.');
+    if (!payload || !sig || !safeEq(sig, await hmac(env.SESSION_SECRET, payload))) return null;
+    const data = JSON.parse(unb64u(payload));
+    return data.exp > Date.now() ? String(data.sub) : null;
+  } catch (e) { return null; }
+}
+const cookie = (value, maxAge) => `pt_session=${value}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=${maxAge}`;
+
+// Trust levels: email only 1/day, verified WhatsApp 5/day, verified WhatsApp + approved listing 10/day
+const limitFor = (m) => (m.whatsapp_verified ? (m.has_listing ? 10 : 5) : 1);
+async function countToday(env, sub, day) {
+  const r = await env.DB.prepare('SELECT COUNT(*) AS c FROM unlocks WHERE member_id=? AND day=?').bind(sub, day).first();
+  return r ? r.c : 0;
+}
+async function gas(env, payload) {
+  const res = await fetch(env.APPS_SCRIPT_URL, {
+    method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ ...payload, secret: env.APPS_SCRIPT_SECRET }), redirect: 'follow'
+  });
+  return res.json();
+}
+async function summary(env, m) {
+  const limit = limitFor(m);
+  const used = await countToday(env, m.id, today());
+  return {
+    email: m.email, name: m.name, whatsapp: m.whatsapp || '', whatsappVerified: !!m.whatsapp_verified,
+    hasListing: !!m.has_listing, limit, remaining: Math.max(0, limit - used)
+  };
+}
+
+async function handleGoogleAuth(request, env) {
+  if (!okOrigin(request)) return json({ ok: false, error: 'bad_origin' }, 403);
+  try {
+    const body = await request.json();
+    const cred = String(body.credential || '');
+    if (!cred || cred.length > 4000) return json({ ok: false, error: 'bad_request' }, 400);
+    const r = await fetch(TOKENINFO + encodeURIComponent(cred));
+    if (!r.ok) return json({ ok: false, error: 'auth_failed' }, 401);
+    const info = await r.json();
+    const goodIss = info.iss === 'accounts.google.com' || info.iss === 'https://accounts.google.com';
+    if (info.aud !== env.GOOGLE_CLIENT_ID || !goodIss || String(info.email_verified) !== 'true' || Number(info.exp) * 1000 < Date.now()) {
+      return json({ ok: false, error: 'auth_failed' }, 401);
+    }
+    const email = String(info.email || '').toLowerCase();
+    if (DISPOSABLE.has(email.split('@')[1])) return json({ ok: false, error: 'disposable_email' }, 400);
+    const now = new Date().toISOString();
+    await env.DB.prepare(
+      'INSERT INTO members(id,email,name,created_at,last_login) VALUES(?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email, name=excluded.name, last_login=excluded.last_login'
+    ).bind(String(info.sub), email, String(info.name || ''), now, now).run();
+    const m = await env.DB.prepare('SELECT * FROM members WHERE id=?').bind(String(info.sub)).first();
+    if (m.banned) return json({ ok: false, error: 'banned' }, 403);
+    const token = await makeSession(env, m.id);
+    return new Response(JSON.stringify({ ok: true, member: await summary(env, m) }), {
+      headers: { ...JSON_HDR, 'Set-Cookie': cookie(token, 30 * 86400) }
+    });
+  } catch (e) { return json({ ok: false, error: 'server_error' }, 500); }
+}
+
+async function handleMe(request, env) {
+  const sub = await getSession(request, env);
+  const none = new Response(JSON.stringify({ ok: true, signedIn: false }), { headers: { ...JSON_HDR, 'Cache-Control': 'no-store' } });
+  if (!sub) return none;
+  const m = await env.DB.prepare('SELECT * FROM members WHERE id=?').bind(sub).first();
+  if (!m || m.banned) return none;
+  return new Response(JSON.stringify({ ok: true, signedIn: true, member: await summary(env, m) }), { headers: { ...JSON_HDR, 'Cache-Control': 'no-store' } });
+}
+
+function handleLogout() {
+  return new Response('{"ok":true}', { headers: { ...JSON_HDR, 'Set-Cookie': cookie('', 0) } });
+}
+
+async function handleProfile(request, env) {
+  if (!okOrigin(request)) return json({ ok: false, error: 'bad_origin' }, 403);
+  const sub = await getSession(request, env);
+  if (!sub) return json({ ok: false, error: 'auth' }, 401);
+  try {
+    const body = await request.json();
+    const num = String(body.whatsapp || '').replace(/[\s()-]/g, '');
+    if (!/^\+?[0-9]{7,15}$/.test(num)) return json({ ok: false, error: 'bad_number' }, 400);
+    const m = await env.DB.prepare('SELECT whatsapp FROM members WHERE id=?').bind(sub).first();
+    if (!m) return json({ ok: false, error: 'auth' }, 401);
+    if (m.whatsapp !== num) await env.DB.prepare('UPDATE members SET whatsapp=?, whatsapp_verified=0 WHERE id=?').bind(num, sub).run();
+    return json({ ok: true });
+  } catch (e) { return json({ ok: false, error: 'server_error' }, 500); }
+}
+
+async function handleUnlock(request, env) {
+  if (!okOrigin(request)) return json({ ok: false, error: 'bad_origin' }, 403);
+  let body;
+  try { body = await request.json(); } catch (e) { return json({ ok: false, error: 'bad_request' }, 400); }
+  const type = body.type;
+  const id = String(body.id || '');
+  if (!['listing', 'lead'].includes(type) || !/^[a-z0-9]{6,20}$/i.test(id)) return json({ ok: false, error: 'bad_request' }, 400);
+  const sub = await getSession(request, env);
+  if (!sub) return json({ ok: false, error: 'auth' }, 401);
+  const m = await env.DB.prepare('SELECT * FROM members WHERE id=?').bind(sub).first();
+  if (!m) return json({ ok: false, error: 'auth' }, 401);
+  if (m.banned) return json({ ok: false, error: 'banned' }, 403);
+
+  const day = today();
+  const existing = await env.DB.prepare('SELECT 1 AS x FROM unlocks WHERE member_id=? AND target_type=? AND target_id=?').bind(sub, type, id).first();
+  let limit = limitFor(m);
+  if (!existing) {
+    if (m.whatsapp_verified && !m.has_listing) {
+      try {
+        const r = await gas(env, { action: 'hasListing', email: m.email });
+        if (r.ok && r.has) {
+          await env.DB.prepare('UPDATE members SET has_listing=1 WHERE id=?').bind(sub).run();
+          m.has_listing = 1; limit = limitFor(m);
+        }
+      } catch (e) {}
+    }
+    const used = await countToday(env, sub, day);
+    if (used >= limit) return json({ ok: false, error: 'limit', limit, used }, 429);
+  }
+  let r;
+  try { r = await gas(env, { action: 'contact', type, id }); } catch (e) { return json({ ok: false, error: 'server_error' }, 502); }
+  if (!r || !r.ok || !r.contact) return json({ ok: false, error: 'not_found' }, 404);
+  if (!existing) {
+    await env.DB.prepare('INSERT OR IGNORE INTO unlocks(member_id,target_type,target_id,day,created_at) VALUES(?,?,?,?,?)')
+      .bind(sub, type, id, day, new Date().toISOString()).run();
+  }
+  const used = await countToday(env, sub, day);
+  return new Response(JSON.stringify({ ok: true, contact: r.contact, limit, remaining: Math.max(0, limit - used) }), {
+    headers: { ...JSON_HDR, 'Cache-Control': 'no-store' }
+  });
+}
+
 /* ---------- router ---------- */
 export default {
   async fetch(request, env, ctx) {
@@ -141,6 +296,11 @@ export default {
     const p = url.pathname;
     if (p === '/api/submit' && request.method === 'POST') return handleSubmit(request, env);
     if (p === '/api/feed' && request.method === 'GET') return handleFeed(request, env, ctx);
+    if (p === '/api/auth/google' && request.method === 'POST') return handleGoogleAuth(request, env);
+    if (p === '/api/auth/logout' && request.method === 'POST') return handleLogout();
+    if (p === '/api/me' && request.method === 'GET') return handleMe(request, env);
+    if (p === '/api/profile' && request.method === 'POST') return handleProfile(request, env);
+    if (p === '/api/unlock' && request.method === 'POST') return handleUnlock(request, env);
     if (p === '/sitemap.xml') return handleSitemap(env, ctx);
     if (p.startsWith('/directory/') && p !== '/directory/') {
       const slug = decodeURIComponent(p.slice('/directory/'.length)).replace(/\/$/, '');

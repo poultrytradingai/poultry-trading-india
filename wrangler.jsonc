@@ -3,6 +3,12 @@
   "main": "src/worker.js",
   "compatibility_date": "2026-11-01",
   "keep_vars": true,
+  "vars": {
+    "GOOGLE_CLIENT_ID": "595244834215-bud05h4b657l8mqdcmpehkun7335u4td.apps.googleusercontent.com"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "poultry-members", "database_id": "3d8fa035-4826-4f04-b964-22b06279e705" }
+  ],
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
