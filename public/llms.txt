@@ -1,14 +1,22 @@
 # PoultryTrading
 
-> Software and business directory platform for the poultry industry in India. Separate software for poultry traders, retailers and farmers, plus a poultry industry directory. Site: https://poultrytrading.com/
+> Worldwide poultry business directory and trade enquiry platform, plus accounting software for poultry traders, retailers and farmers (India focus). Site: https://poultrytrading.com/
 
-## Products
+## Directory and trade
+
+- [Poultry Business Directory](https://poultrytrading.com/directory/): searchable listings of hatcheries, farms, feed companies, processors, egg suppliers, equipment makers, vets and traders worldwide. Contact details are hidden.
+- [Buy and Sell Enquiries](https://poultrytrading.com/leads/): live import, export and local poultry trade enquiries (anonymous).
+- [List Your Business Free](https://poultrytrading.com/list-your-business/): add a business to the directory.
+- [Import / Export Enquiry](https://poultrytrading.com/enquiry/import-export/): post a cross-border buy or sell requirement.
+- [Local Trade Enquiry](https://poultrytrading.com/enquiry/local-trade/): post a local buy or sell requirement.
+- [Contact](https://poultrytrading.com/contact/): support and partnership enquiries.
+
+## Software (India)
 
 - Poultry Trader Flow: accounting software for poultry traders.
 - Poultry Retailer Flow: shop management and accounting software for poultry retailers.
 - Poultry Farmer Flow: farm management and accounting software for poultry farmers.
-- Poultry Industry Directory: B2B directory of poultry businesses in India.
 
 ## Main page
 
-- [PoultryTrading home](https://poultrytrading.com/): overview of all products and the directory.
+- [PoultryTrading home](https://poultrytrading.com/): overview of the directory and all software products.
