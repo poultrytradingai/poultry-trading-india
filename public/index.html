@@ -787,7 +787,9 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
       <span>www.poultrytrading.com</span>
     </a>
     <div class="nav-links">
-      <a onclick="showPage('directory')" id="nav-directory" data-i18n="nav_dir" class="active">Directory</a>
+      <a href="/directory/" id="nav-directory" data-i18n="nav_dir">Directory</a>
+      <a href="/leads/" id="nav-leads">Enquiries</a>
+      <a href="/list-your-business/" id="nav-list">List Free</a>
       <a onclick="showPage('trader')" id="nav-trader" data-i18n="nav_trader">Trader</a>
       <a onclick="showPage('retailer')" id="nav-retailer" data-i18n="nav_retailer">Retailer</a>
       <a onclick="showPage('farmer')" id="nav-farmer" data-i18n="nav_farmer">Farmer</a>
@@ -810,7 +812,7 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
 </nav>
 
 <!-- =================== HOME PAGE =================== -->
-<div id="page-home" class="page">
+<div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-badge" data-i18n="home_badge">🇮🇳 Made for Indian Poultry Business</div>
     <h1 data-i18n="home_h1">Apne Poultry Business ke liye<br><span data-i18n="home_h1_span">Sahi Software</span></h1>
@@ -819,6 +821,22 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       WhatsApp pe Samjho
     </a>
+  </div>
+
+  <div class="section" id="home-directory">
+    <div class="section-title">Poultry Business Directory</div>
+    <div class="section-sub">Hatcheries, farms, feed, processors, equipment and traders worldwide. Free to list.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:0 0 16px">
+      <div style="background:#fff;border:1px solid rgba(27,58,107,.15);border-radius:10px;padding:12px;text-align:center"><b data-hs="listings" style="display:block;font-size:1.6rem;color:var(--navy)">0</b><span style="font-size:.78rem;color:#5a6480">Listings</span></div>
+      <div style="background:#fff;border:1px solid rgba(27,58,107,.15);border-radius:10px;padding:12px;text-align:center"><b data-hs="countries" style="display:block;font-size:1.6rem;color:var(--navy)">0</b><span style="font-size:.78rem;color:#5a6480">Countries</span></div>
+      <div style="background:#fff;border:1px solid rgba(27,58,107,.15);border-radius:10px;padding:12px;text-align:center"><b data-hs="liveEnquiries" style="display:block;font-size:1.6rem;color:var(--navy)">0</b><span style="font-size:.78rem;color:#5a6480">Live enquiries</span></div>
+      <div style="background:#fff;border:1px solid rgba(27,58,107,.15);border-radius:10px;padding:12px;text-align:center"><b data-hs="newThisWeek" style="display:block;font-size:1.6rem;color:var(--navy)">0</b><span style="font-size:.78rem;color:#5a6480">New this week</span></div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="/directory/" style="background:var(--orange);color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 20px">Browse directory</a>
+      <a href="/list-your-business/" style="background:var(--navy);color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 20px">List your business free</a>
+      <a href="/enquiry/import-export/" style="border:1px solid var(--navy);color:var(--navy);text-decoration:none;font-weight:700;border-radius:10px;padding:10px 20px">Post an enquiry</a>
+    </div>
   </div>
 
   <div class="section">
@@ -890,6 +908,7 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
   <footer>
     <p>© 2024 <strong>Poultry Trading India</strong> — Pomelio Software</p>
     <p style="margin-top:6px;color:rgba(255,255,255,0.5);">Mumbai, Maharashtra | Designed for Indian Poultry Traders</p>
+    <p style="margin-top:6px;"><a href="/directory/" style="color:rgba(255,255,255,0.7)">Directory</a> &middot; <a href="/leads/" style="color:rgba(255,255,255,0.7)">Enquiries</a> &middot; <a href="/list-your-business/" style="color:rgba(255,255,255,0.7)">List your business</a> &middot; <a href="/contact/" style="color:rgba(255,255,255,0.7)">Contact</a></p>
   </footer>
 </div>
 
@@ -1336,7 +1355,7 @@ body.lang-gu { font-family: 'Noto Sans Gujarati', sans-serif; }
 <!-- Sticky WhatsApp -->
 
 <!-- =================== DIRECTORY PAGE =================== -->
-<div id="page-directory" class="page active">
+<div id="page-directory" class="page">
   <button class="back-btn" onclick="showPage('home')" data-i18n="btn_back">← Wapas Jao</button>
   <div class="section">
     <div class="section-title" data-i18n="dir_title">Industry Directory</div>
@@ -2069,26 +2088,7 @@ function setLang(lang) {
 }
 
 // ===== DIRECTORY JS =====
-var DIR_DATA=[
-  {id:0,cat:"farmer",icon:"🐔",name:"Ravi Poultry Farm",role:"Broiler Farmer",loc:"Pune, Maharashtra",phone:"+91 98200 XXXXX",cap:"20,000 birds/batch",rating:4.6,reviews:38,verified:true,tags:["Broiler","Contract farming","Ross 308"]},
-  {id:1,cat:"farmer",icon:"🐔",name:"Shinde Agro Farms",role:"Layer + Broiler Farmer",loc:"Nashik, Maharashtra",phone:"+91 97650 XXXXX",cap:"35,000 birds/batch",rating:4.3,reviews:21,verified:true,tags:["Broiler","Layer","Own feed mill"]},
-  {id:2,cat:"farmer",icon:"🐔",name:"Patil Poultry",role:"Broiler Farmer",loc:"Kolhapur, Maharashtra",phone:"+91 99230 XXXXX",cap:"15,000 birds/batch",rating:4.1,reviews:15,verified:false,tags:["Broiler","Ventilated sheds"]},
-  {id:3,cat:"farmer",icon:"🐔",name:"Krishna Hatchery Farm",role:"Chick Supplier + Hatchery",loc:"Aurangabad, Maharashtra",phone:"+91 96570 XXXXX",cap:"50,000 chicks/month",rating:4.7,reviews:54,verified:true,tags:["Day-old chicks","Grandparent stock","Hatching eggs"]},
-  {id:4,cat:"trader",icon:"⚖️",name:"Mumbai Broiler Traders",role:"Wholesale Trader",loc:"Deonar, Mumbai",phone:"+91 98330 XXXXX",cap:"5,000–10,000 kg/day",rating:4.5,reviews:62,verified:true,tags:["Wholesale","Live bird","Mandi rate"]},
-  {id:5,cat:"trader",icon:"⚖️",name:"Shaikh Poultry House",role:"Commission Agent",loc:"Kurla, Mumbai",phone:"+91 99200 XXXXX",cap:"3,000 kg/day",rating:4.2,reviews:29,verified:false,tags:["Commission","Shrinkage tracking"]},
-  {id:6,cat:"trader",icon:"⚖️",name:"Ansari Brothers Trading",role:"Wholesale Trader",loc:"Bhiwandi, Thane",phone:"+91 97140 XXXXX",cap:"8,000 kg/day",rating:4.4,reviews:41,verified:true,tags:["Cold chain","Maharashtra-wide"]},
-  {id:7,cat:"trader",icon:"⚖️",name:"National Poultry Depot",role:"Aggregator Trader",loc:"Navi Mumbai",phone:"+91 98920 XXXXX",cap:"12,000 kg/day",rating:4.8,reviews:87,verified:true,tags:["Multi-city","Export grade","Aggregator"]},
-  {id:8,cat:"retailer",icon:"🏪",name:"Fresh Chicken Corner",role:"Retail Shop",loc:"Dadar, Mumbai",phone:"+91 98190 XXXXX",cap:"200–400 kg/day",rating:4.6,reviews:113,verified:true,tags:["Halal","Home delivery","Walk-in"]},
-  {id:9,cat:"retailer",icon:"🏪",name:"Sai Poultry Shop",role:"Retail + Processing",loc:"Thane West",phone:"+91 96500 XXXXX",cap:"150 kg/day",rating:4.0,reviews:34,verified:false,tags:["Live + cut","Marination","Daily fresh"]},
-  {id:10,cat:"retailer",icon:"🏪",name:"City Chicken Centre",role:"Multi-outlet Retail Chain",loc:"Pune City",phone:"+91 97300 XXXXX",cap:"600 kg/day · 3 outlets",rating:4.7,reviews:156,verified:true,tags:["Chain","POS billing","Pre-packed"]},
-  {id:11,cat:"retailer",icon:"🏪",name:"Bismillah Poultry",role:"Retail Shop",loc:"Nagpur, Maharashtra",phone:"+91 98700 XXXXX",cap:"180 kg/day",rating:4.2,reviews:27,verified:false,tags:["Halal certified","Local delivery"]},
-  {id:12,cat:"supplier",icon:"🏭",name:"Venky's India Ltd.",role:"Feed & Chick Supplier",loc:"Pune (HQ) · Pan-India",phone:"1800-XXX-XXXX",cap:"Pan-India",rating:4.9,reviews:342,verified:true,tags:["DOC","Feed","Vaccines","NSE listed"]},
-  {id:13,cat:"supplier",icon:"🏭",name:"Suguna Foods Pvt. Ltd.",role:"Integrated Poultry Supplier",loc:"Erode HQ · MH office",phone:"1800-XXX-XXXX",cap:"Contract farming",rating:4.7,reviews:198,verified:true,tags:["DOC","Buyback","Technical support"]},
-  {id:14,cat:"supplier",icon:"💊",name:"Zoetis India",role:"Veterinary Medicine",loc:"Mumbai · Pan-India",phone:"+91 22-XXXX-XXXX",cap:"Pan-India coverage",rating:4.8,reviews:211,verified:true,tags:["Vaccines","Antibiotics","Vet support"]},
-  {id:15,cat:"supplier",icon:"🏭",name:"Godrej Agrovet",role:"Feed Manufacturer",loc:"Mumbai · Pan-India",phone:"1800-XXX-XXXX",cap:"30+ feed plants",rating:4.8,reviews:267,verified:true,tags:["Poultry feed","R&D","NSE listed"]},
-  {id:16,cat:"supplier",icon:"🔧",name:"Poul-Tech Equipment",role:"Farm Equipment Supplier",loc:"Pune, Maharashtra",phone:"+91 98220 XXXXX",cap:"Maharashtra region",rating:4.3,reviews:44,verified:false,tags:["Drinkers","Feeders","Shed setup","Ventilation"]},
-  {id:17,cat:"supplier",icon:"🚛",name:"MH Cold Logix",role:"Cold Chain & Transport",loc:"Navi Mumbai · MH-wide",phone:"+91 97690 XXXXX",cap:"50+ reefer vehicles",rating:4.5,reviews:76,verified:true,tags:["Reefer trucks","Last mile","Slaughter transport"]}
-];
+var DIR_DATA=[];
 var DIR_CAT={farmer:"Farmer",trader:"Trader",retailer:"Retailer",supplier:"Supplier"};
 var DIR_STRIPE={farmer:"dsf",trader:"dst",retailer:"dsr",supplier:"dss"};
 var DIR_AVA={farmer:"davf",trader:"davt",retailer:"davr",supplier:"davs"};
@@ -2223,6 +2223,12 @@ function toggleFaq(el) {
 window.addEventListener('DOMContentLoaded', function() {
   dirRender();
 });
+</script>
+<script>
+fetch('/api/feed?action=stats').then(function(r){return r.json()}).then(function(d){
+  if(!d||!d.ok)return;
+  document.querySelectorAll('[data-hs]').forEach(function(el){el.textContent=(Number(d[el.getAttribute('data-hs')])||0).toLocaleString()});
+}).catch(function(){});
 </script>
 </body>
 </html>
