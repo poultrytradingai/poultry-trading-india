@@ -13,9 +13,10 @@
 
 ## Software (India)
 
-- Poultry Trader Flow: accounting software for poultry traders.
-- Poultry Retailer Flow: shop management and accounting software for poultry retailers.
-- Poultry Farmer Flow: farm management and accounting software for poultry farmers.
+- [Software overview](https://poultrytrading.com/software/): accounting and management software for poultry traders, retailers and farmers.
+- [Poultry Trader Flow](https://poultrytrading.com/software/poultry-trader-flow/): billing, shrinkage tracking, credit ledger and daily reports for wholesale poultry traders. Available now.
+- [Poultry Retailer Flow](https://poultrytrading.com/software/poultry-retailer-flow/): shop management software for retail chicken shops. Launching soon.
+- [Poultry Farmer Flow](https://poultrytrading.com/software/poultry-farmer-flow/): farm management software for poultry farmers. In development.
 
 ## Main page
 
