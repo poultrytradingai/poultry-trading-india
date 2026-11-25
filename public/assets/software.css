@@ -35,3 +35,11 @@ summary{cursor:pointer;font-weight:600;color:var(--navy)}details p{margin:8px 0 
 .hc:hover{border-color:var(--orange)}.hc .logo-card{box-shadow:none;border:1px solid rgba(27,58,107,.08)}.hc p{font-size:.9rem;color:var(--text2);margin-top:6px}
 .crumb{font-size:.8rem;color:var(--text2);max-width:860px;margin:12px auto 0;padding:0 16px}
 @media(max-width:600px){.hero h1{font-size:1.6rem}}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.shot{margin:0;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{padding:10px 12px;font-size:.88rem;color:var(--text2)}
+.shot figcaption b{display:block;color:var(--navy);font-size:.95rem}
+.wa{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:6px}
+.wa p{font-size:.95rem;margin:0 0 10px}
+.wa ul{margin:0 0 14px 20px}.wa li{font-size:.92rem;margin:0 0 4px}
