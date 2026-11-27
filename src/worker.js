@@ -69,7 +69,7 @@ async function handleFeed(request, env, ctx) {
 
 /* ---------- listing detail page: /directory/<slug> ---------- */
 const NAV = '<nav><div class="nav-inner"><a class="brand" href="/">PoultryTrading<span>Poultry industry platform</span></a><div class="links"><a href="/software/">Software</a><a href="/directory/">Directory</a><a href="/leads/">Enquiries</a><a href="/list-your-business/">List free</a><a href="/contact/">Contact</a></div></div></nav>';
-const FOOT = '<footer>&copy; PoultryTrading.com &middot; <a href="/">Home</a> &middot; <a href="/directory/">Directory</a> &middot; <a href="/leads/">Enquiries</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/terms/">Terms</a></footer>';
+const FOOT = '<footer>&copy; PoultryTrading.com &middot; <a href="/">Home</a> &middot; <a href="/directory/">Directory</a> &middot; <a href="/leads/">Enquiries</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/terms/">Terms</a> &middot; <a href="/grievance/">Grievance</a></footer>';
 
 function shell({ title, desc, canonical, robots, body, ld }) {
   return `<!DOCTYPE html><html lang="en"><head>
@@ -123,7 +123,7 @@ async function handleListing(slug, env, ctx) {
 
 /* ---------- sitemap (static pages + approved listings) ---------- */
 async function handleSitemap(env, ctx) {
-  const pages = ['/', '/directory/', '/leads/', '/list-your-business/', '/enquiry/import-export/', '/enquiry/local-trade/', '/contact/', '/privacy/', '/terms/', '/software/', '/software/poultry-trader-flow/', '/software/poultry-retailer-flow/', '/software/poultry-farmer-flow/'];
+  const pages = ['/', '/directory/', '/leads/', '/list-your-business/', '/enquiry/import-export/', '/enquiry/local-trade/', '/contact/', '/privacy/', '/terms/', '/software/', '/software/poultry-trader-flow/', '/software/poultry-retailer-flow/', '/software/poultry-farmer-flow/', '/software-terms/', '/grievance/'];
   let urls = pages.map((p) => `<url><loc>${SITE}${p}</loc></url>`);
   try {
     const data = JSON.parse(await getFeedText(env, ctx, 'listings'));
