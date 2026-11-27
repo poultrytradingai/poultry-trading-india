@@ -289,6 +289,21 @@ async function handleUnlock(request, env) {
   });
 }
 
+/* ---------- app short links ----------
+ * /support and /upgrade are opened by Poultry Trader Flow (desktop + phone apps). They send the
+ * user to WhatsApp; the app may pass its own message (licence details) as ?text=. Change the
+ * number here — no app update needed.
+ */
+const WHATSAPP_NUMBER = '919867861253';
+const APP_LINK_TEXT = {
+  '/support': 'Hi, I need help with Poultry Trader Flow.',
+  '/upgrade': 'Hi, I want to upgrade Poultry Trader Flow to Tier 3 — Full Control.',
+};
+function handleAppLink(url) {
+  const text = (url.searchParams.get('text') || APP_LINK_TEXT[url.pathname]).slice(0, 1500);
+  return Response.redirect(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, 302);
+}
+
 /* ---------- router ---------- */
 export default {
   async fetch(request, env, ctx) {
@@ -301,6 +316,7 @@ export default {
     if (p === '/api/me' && request.method === 'GET') return handleMe(request, env);
     if (p === '/api/profile' && request.method === 'POST') return handleProfile(request, env);
     if (p === '/api/unlock' && request.method === 'POST') return handleUnlock(request, env);
+    if (p === '/support' || p === '/upgrade') return handleAppLink(url);
     if (p === '/sitemap.xml') return handleSitemap(env, ctx);
     if (p.startsWith('/directory/') && p !== '/directory/') {
       const slug = decodeURIComponent(p.slice('/directory/'.length)).replace(/\/$/, '');
